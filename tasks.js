@@ -104,12 +104,42 @@ const TASKS = [
     first: "két hetes",
     second: "kéthetes",
     correct: "both",
-    tags: ["egybe- és különírás", "jelentés"],
-    explanation: "Mindkét alak lehet helyes a jelentéstől függően: két hetes kirándulás, illetve kéthetes tanfolyam.",
+    tags: ["egybe- és különírás", "jelentés", "időtartam", "számnév"],
+    explanation: "Mindkét alak helyes, de mást jelent. A kéthetes időtartamot vagy életkort fejez ki, a két hetes pedig két darab vagy két személy megnevezése lehet.",
     learn: {
-      title: "A jelentés is számít",
-      body: "A két hetes szerkezetben a két a hetes szót mennyiségjelzőként bővíti. A kéthetes egyetlen összetett melléknév.",
-      rule: "Ugyanazok a szavak külön- és egybeírva más szerkezetet vagy jelentést alkothatnak."
+      title: "Kéthetes vagy két hetes? Mindkettő helyes, de nem ugyanazt jelenti.",
+      comparison: [
+        {
+          word: "kéthetes",
+          subtitle: "Egybeírjuk – időtartam vagy életkor",
+          examples: [
+            { correct: true, text: "kéthetes szabadság" },
+            { correct: true, text: "kéthetes tanfolyam" },
+            { correct: true, text: "kéthetes tábor" },
+            { correct: true, text: "kéthetes kisbaba" },
+            { correct: false, text: "két hetes szabadság" }
+          ]
+        },
+        {
+          word: "két hetes",
+          subtitle: "Különírjuk – a két a hetes szó darabszámát jelöli",
+          examples: [
+            { correct: true, text: "Két hetes vigyáz a rendre." },
+            { correct: true, text: "Két hetes kártya van nálam." },
+            { correct: true, text: "Két hetest húztam a pakliból." },
+            { correct: false, text: "Kéthetes vigyáz a rendre." }
+          ]
+        }
+      ],
+      ruleTitle: "Mi a különbség?",
+      rule: "A kéthetes egyetlen melléknév: időtartamot vagy életkort fejez ki. A két hetes szerkezetben a hetes önálló szó, a két pedig azt jelöli, hogy belőle kettő van.",
+      formula: "kéthetes = időtartam / életkor ↔ két hetes = két darab / két személy",
+      counterTitle: "A jelentés dönt",
+      counterText: "A kéthetes szabadság két hétig tart. A Két hetes vigyáz a rendre mondatban viszont két, hetesnek nevezett tanulóról van szó.",
+      irregularTitle: "Jegyezd meg!",
+      irregulars: ["kéthetes szabadság", "kéthetes kisbaba", "két hetes vigyáz", "két hetes kártya"],
+      image: "magyarazat03.png",
+      imageAlt: "Infografika a kéthetes és két hetes alak jelentéséről és helyesírásáról"
     }
   },
   {
