@@ -1,0 +1,64 @@
+.practice-offer {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 720px;
+  margin: 26px auto 0;
+  padding: 20px;
+  border-radius: 20px;
+  background: #f1f7f5;
+  border: 1px solid rgba(79,127,121,.18);
+  text-align: left;
+}
+
+.practice-offer h3,
+.practice-offer p { margin: 0; }
+.practice-offer p { margin-top: 6px; color: var(--muted); line-height: 1.55; }
+.practice-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 15px;
+  background: var(--accent);
+  color: white;
+  font-size: 1.35rem;
+}
+
+.practice-screen { max-width: 760px; margin: 0 auto; text-align: center; }
+.practice-screen h2 { margin: 22px 0; font-size: clamp(1.7rem,4vw,2.5rem); }
+.practice-topic { margin-top: 24px; }
+.practice-options { display: grid; gap: 13px; margin-top: 24px; }
+.practice-option {
+  width: 100%;
+  padding: 18px 20px;
+  border: 2px solid #e4e8e5;
+  border-radius: 17px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.practice-option:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--accent); }
+.practice-option.correct { background: var(--accent-soft); border-color: #76a99d; }
+.practice-option.wrong { background: var(--danger-soft); border-color: #d58d86; }
+.practice-option:disabled { cursor: default; color: var(--ink); }
+.practice-feedback {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 17px;
+  text-align: left;
+}
+.practice-feedback.correct { background: var(--accent-soft); }
+.practice-feedback.wrong { background: var(--danger-soft); }
+.practice-feedback strong { display: block; margin-bottom: 5px; }
+.practice-feedback p { margin: 0; line-height: 1.55; }
+.result-score.small { width: 150px; height: 150px; }
+
+@media (max-width: 720px) {
+  .practice-offer { align-items: flex-start; padding: 16px; }
+  .practice-icon { width: 40px; height: 40px; }
+}
