@@ -175,6 +175,51 @@ function renderResult() {
   document.getElementById("restartBtn").addEventListener("click", restart);
 }
 
+function renderLearningContent(learn) {
+  if (learn.comparison) {
+    return `
+      <h3>${learn.title}</h3>
+      <div class="learning-comparison">
+        ${learn.comparison.map(item => `
+          <section class="learning-side">
+            <div class="learning-word">${item.word}</div>
+            <div class="learning-subtitle">${item.subtitle}</div>
+            <div class="learning-examples">
+              ${item.examples.map(example => `
+                <p class="learning-example ${example.correct ? "good" : "bad"}">
+                  <span aria-hidden="true">${example.correct ? "✓" : "✕"}</span>${example.text}
+                </p>`).join("")}
+            </div>
+          </section>`).join("")}
+      </div>
+      <div class="rule-panel">
+        <h4>${learn.ruleTitle}</h4>
+        <p>${learn.rule}</p>
+        <div class="formula">${learn.formula}</div>
+      </div>
+      <div class="counter-panel">
+        <h4>${learn.counterTitle}</h4>
+        <p>${learn.counterText}</p>
+      </div>
+      <div class="irregular-panel">
+        <h4>${learn.irregularTitle}</h4>
+        <div class="irregular-list">${learn.irregulars.map(word => `<span>${word}</span>`).join("")}</div>
+      </div>
+      ${learn.image ? `
+        <details class="visual-summary">
+          <summary>Vizuális összefoglaló megnyitása</summary>
+          <img src="${learn.image}" alt="${learn.imageAlt || "Vizuális magyarázat"}">
+        </details>` : ""}
+    `;
+  }
+
+  return `
+    <h3>${learn.title}</h3>
+    <p>${learn.body}</p>
+    <div class="remember-box"><strong>Jegyezd meg!</strong><span>${learn.rule}</span></div>
+  `;
+}
+
 function renderReview() {
   state.screen = "review";
   const task = TASKS[state.reviewIndex];
@@ -221,13 +266,9 @@ function renderReview() {
       </div>
 
       ${task.learn ? `
-        <details class="learning-card" ${!correct ? "open" : ""}>
+        <details class="learning-card" ${!correct || task.id === 1 ? "open" : ""}>
           <summary>Nézzük meg részletesebben</summary>
-          <div class="learning-content">
-            <h3>${task.learn.title}</h3>
-            <p>${task.learn.body}</p>
-            <div class="remember-box"><strong>Jegyezd meg!</strong><span>${task.learn.rule}</span></div>
-          </div>
+          <div class="learning-content">${renderLearningContent(task.learn)}</div>
         </details>` : ""}
 
       <div class="review-navigation">
