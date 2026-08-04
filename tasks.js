@@ -192,9 +192,36 @@ const TASKS = [
     first: "higyj",
     second: "higgy",
     correct: "second",
-    tags: ["felszólító mód", "mássalhangzó"],
-    explanation: "A hisz ige felszólító módú alakja: higgy.",
-    learn: { title: "Rendhagyó alak", body: "A hisz ige felszólító módú alakja nem higyj, hanem higgy.", rule: "Helyes alak: higgy!" }
+    tags: ["felszólító mód", "rendhagyó ige", "gy + j"],
+    explanation: "A hisz ige felszólító módú alakja nem higyj, hanem higgy. A hagyj viszont helyes: a hagy igéhez a felszólító mód -j jele kapcsolódik.",
+    learn: {
+      title: "Higgy vagy hagyj? A kiejtés hasonló, az írásmód eltér.",
+      comparison: [
+        { word: "higgy", subtitle: "A hisz ige rendhagyó felszólító módú alakja", examples: [
+          { correct: true, text: "Higgy nekem!" },
+          { correct: true, text: "Higgye el!" },
+          { correct: true, text: "Higgyük el!" },
+          { correct: true, text: "Higgyétek már!" },
+          { correct: false, text: "Higyj nekem!" }
+        ]},
+        { word: "hagyj", subtitle: "A hagy igéhez a felszólító mód -j jele kapcsolódik", examples: [
+          { correct: true, text: "Hagyj békén!" },
+          { correct: true, text: "Hagyja abba!" },
+          { correct: true, text: "Hagyjuk itt!" },
+          { correct: true, text: "Hagyjátok nyitva!" },
+          { correct: false, text: "Haggy békén!" }
+        ]}
+      ],
+      ruleTitle: "Mi a lényeg?",
+      rule: "A hisz ige felszólító módú alakja rendhagyó: higgy. A hagy ige töve gy-re végződik, ehhez kapcsolódik a felszólító mód -j jele, ezért írásban megtartjuk a gy + j kapcsolatot: hagyj.",
+      formula: "hisz → higgy • hagy → hagyj",
+      counterTitle: "A kiejtés becsaphat",
+      counterText: "A hagyj szóban a gy és a j a kiejtésben teljes hasonulással hosszú gy hangként hallatszik, de írásban a gy + j alakot tartjuk meg.",
+      irregularTitle: "Rokon példák",
+      irregulars: ["higgy", "higgye", "higgyük", "higgyétek", "hagyja", "hagyjuk", "hagyjátok", "fogyjon"],
+      image: "magyarazat05.png",
+      imageAlt: "Infografika a higgy és hagyj felszólító módú alakok helyesírásáról"
+    }
   },
   {
     id: 10,
@@ -204,7 +231,11 @@ const TASKS = [
     correct: "second",
     tags: ["toldalékolás", "rövidítés"],
     explanation: "A rövidítésekhez a toldalékot kötőjellel kapcsoljuk, és a kiejtés szerinti alakot írjuk: cm-rel.",
-    learn: { title: "A kiejtés segít", body: "A cm rövidítést centiméternek ejtjük, ezért a -val/-vel toldalék hasonult alakja -rel lesz.", rule: "Rövidítés + toldalék: kötőjel, a toldalék alakját pedig a kiejtés határozza meg." }
+    learn: {
+      title: "A kiejtés segít",
+      body: "A cm rövidítést centiméternek ejtjük, ezért a -val/-vel toldalék hasonult alakja -rel lesz.",
+      rule: "Rövidítés + toldalék: kötőjel, a toldalék alakját pedig a kiejtés határozza meg."
+    }
   },
   {
     id: 11,
@@ -214,7 +245,11 @@ const TASKS = [
     correct: "both",
     tags: ["j–ly", "jelentés"],
     explanation: "Mindkettő helyes, de mást jelent: fojt = fullaszt, folyt = folyik vagy folytat.",
-    learn: { title: "Azonos hangzás, eltérő jelentés", body: "A fojt jelentése: fullaszt. A folyt a folyik vagy a folytat igéhez kapcsolódik.", rule: "A jelentés alapján dönthető el, melyik alak illik a mondatba." }
+    learn: {
+      title: "Azonos hangzás, eltérő jelentés",
+      body: "A fojt jelentése: fullaszt. A folyt a folyik vagy a folytat igéhez kapcsolódik.",
+      rule: "A jelentés alapján dönthető el, melyik alak illik a mondatba."
+    }
   },
   {
     id: 12,
@@ -224,6 +259,10 @@ const TASKS = [
     correct: ["first", "both"],
     tags: ["kis- és nagybetű", "földrajzi név"],
     explanation: "Mondat közben a dél-európai alak helyes; mondatkezdő helyzetben a Dél-európai is elfogadható.",
-    learn: { title: "A mondat helye is számít", body: "Mondat közben kis kezdőbetűs a dél-európai alak. Mondat elején természetesen nagy kezdőbetűvel indulhat.", rule: "A feladat mondatkezdő helyzetben a nagybetűs alakot is elfogadja." }
+    learn: {
+      title: "A mondat helye is számít",
+      body: "Mondat közben kis kezdőbetűs a dél-európai alak. Mondat elején természetesen nagy kezdőbetűvel indulhat.",
+      rule: "A feladat mondatkezdő helyzetben a nagybetűs alakot is elfogadja."
+    }
   }
 ];
