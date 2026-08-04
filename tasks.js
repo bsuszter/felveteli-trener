@@ -257,12 +257,31 @@ const TASKS = [
     first: "dél-európai",
     second: "Dél-európai",
     correct: ["first", "both"],
-    tags: ["kis- és nagybetű", "földrajzi név"],
-    explanation: "Mondat közben a dél-európai alak helyes; mondatkezdő helyzetben a Dél-európai is elfogadható.",
+    tags: ["kis- és nagybetű", "földrajzi név", "-i képző", "kötőjel"],
+    explanation: "Általában a dél-európai alak helyes. Mondat elején azonban a Dél-európai is elfogadható.",
     learn: {
-      title: "A mondat helye is számít",
-      body: "Mondat közben kis kezdőbetűs a dél-európai alak. Mondat elején természetesen nagy kezdőbetűvel indulhat.",
-      rule: "A feladat mondatkezdő helyzetben a nagybetűs alakot is elfogadja."
+      title: "Dél-európai vagy dél-európai?",
+      comparison: [
+        { word: "dél-európai", subtitle: "Ez a helyes alak általában", examples: [
+          { correct: true, text: "dél-európai országok" },
+          { correct: true, text: "dél-európai táj" },
+          { correct: false, text: "Sok Dél-európai ország csatlakozott." }
+        ]},
+        { word: "Dél-európai", subtitle: "Mondat elején elfogadható", examples: [
+          { correct: true, text: "Dél-európai országok is csatlakoztak." },
+          { correct: true, text: "Dél-európai tájakról tanultunk." },
+          { correct: false, text: "Sok Dél-európai ország csatlakozott." }
+        ]}
+      ],
+      ruleTitle: "A szabály",
+      rule: "Az ilyen földrajzi nevek -i képzős alakjában mindkét tagot kisbetűvel kezdjük, és a kötőjelet megtartjuk. Ezért általában a dél-európai alak helyes.",
+      formula: "Dél-Kína → dél-kínai • Magas-Tátra → magas-tátrai • Délkelet-Magyarország → délkelet-magyarországi",
+      counterTitle: "Fontos!",
+      counterText: "A Dél-Európa alak földrajzi név, ezért nagy kezdőbetűs. Ennek melléknévi alakja azonban dél-európai. Mondat elején a nagy kezdőbetű csak a mondatkezdés miatt jelenik meg.",
+      irregularTitle: "Jegyezd meg!",
+      irregulars: ["-i képzős melléknév: kisbetű + kötőjel", "mondat elején: a nagy kezdőbetű elfogadható", "alapföldrajzi név: nagy kezdőbetű + kötőjel", "pl. holt-tiszai, dél-kínai, magas-tátrai"],
+      image: "magyarazat06.png",
+      imageAlt: "Infografika a dél-európai alak helyesírásáról"
     }
   }
 ];
