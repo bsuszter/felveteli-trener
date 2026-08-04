@@ -6,11 +6,36 @@ const TASKS = [
     second: "mondd",
     correct: "both",
     tags: ["igeragozás", "felszólító mód"],
-    explanation: "Mindkettő helyes: a mond kijelentő módú alak, a mondd felszólító módú alak.",
+    explanation: "Mindkettő helyes: a mond kijelentő módú alak, a mondd felszólító módú, határozott ragozású alak.",
     learn: {
-      title: "Miért lehet helyes mindkettő?",
-      body: "A mond alak kijelentő módú: „Péter igazat mond.” A mondd felszólító módú: „Mondd el, mi történt!”",
-      rule: "A d-re végződő igék felszólító módjában a felszólító mód jele és az ige végi d találkozhat: mond + d → mondd."
+      title: "Mikor írjuk azt, hogy mond, és mikor azt, hogy mondd?",
+      comparison: [
+        {
+          word: "mond",
+          subtitle: "Kijelentő mód",
+          examples: [
+            { correct: true, text: "Péter igazat mond." },
+            { correct: false, text: "Péter igazat mondd." }
+          ]
+        },
+        {
+          word: "mondd",
+          subtitle: "Felszólító mód, határozott ragozás",
+          examples: [
+            { correct: true, text: "Mondd el az igazat!" },
+            { correct: false, text: "Mond el az igazat!" }
+          ]
+        }
+      ],
+      ruleTitle: "Miért két d?",
+      rule: "A mond ige töve d-re végződik. Ehhez kapcsolódik a felszólító mód -d jele:",
+      formula: "mond + d = mondd",
+      counterTitle: "Nem minden felszólító alakban van két d",
+      counterText: "Az írd, kérd, hagyd alakokban csak egy d van, mert az igető nem d-re végződik.",
+      irregularTitle: "Rendhagyó alakok",
+      irregulars: ["vidd", "idd", "edd", "tedd", "vedd"],
+      image: "magyarazat01.png",
+      imageAlt: "Infografika a mond és mondd alak használatáról"
     }
   },
   {
