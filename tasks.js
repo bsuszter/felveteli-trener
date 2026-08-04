@@ -58,12 +58,44 @@ const TASKS = [
     first: "megakarta beszélni",
     second: "meg akarta beszélni",
     correct: "second",
-    tags: ["igekötő", "egybe- és különírás"],
+    tags: ["igekötő", "egybe- és különírás", "közbeékelődés"],
     explanation: "Ha az igekötő és az ige közé más szó kerül, az igekötőt különírjuk: meg akarta beszélni.",
     learn: {
-      title: "Az igekötő helye dönt",
-      body: "A meg a beszélni igéhez tartozik, de az akarta közéjük ékelődik, ezért különírjuk.",
-      rule: "Ha az igekötő és az ige közé más szó kerül, az igekötőt különírjuk."
+      title: "Mikor írjuk külön, és mikor egybe az igekötős igét?",
+      comparison: [
+        {
+          word: "Különírjuk",
+          subtitle: "Ha az igekötő és az ige közé más szó ékelődik",
+          examples: [
+            { correct: true, text: "meg akarta beszélni" },
+            { correct: true, text: "meg fogja beszélni" },
+            { correct: true, text: "el szeretné mondani" },
+            { correct: true, text: "ki tudja nyitni" },
+            { correct: true, text: "be kell vinni" },
+            { correct: false, text: "megakarta beszélni" }
+          ]
+        },
+        {
+          word: "Egybeírjuk",
+          subtitle: "Ha nincs közbeékelődés: az igekötő közvetlenül az igéhez kapcsolódik",
+          examples: [
+            { correct: true, text: "megbeszéli a dolgot" },
+            { correct: true, text: "kinyitja az ajtót" },
+            { correct: true, text: "beviszi a csomagot" },
+            { correct: true, text: "megfogja a ceruzát" },
+            { correct: false, text: "meg beszéli a dolgot" }
+          ]
+        }
+      ],
+      ruleTitle: "Vigyázz a fog szóval!",
+      rule: "A meg fogja beszélni szerkezetben a fogja a jövő idejű összetett igealak része, ezért különírjuk. A megfogja a ceruzát mondatban a fog valódi cselekvést kifejező ige, ezért az igekötővel egybeírjuk.",
+      formula: "meg fogja beszélni ↔ megfogja a ceruzát",
+      counterTitle: "A közbeékelődés a döntő",
+      counterText: "Ha az igekötő és az ige közé más szó kerül, különírjuk őket. Ha nem kerül közéjük más szó, egybeírjuk.",
+      irregularTitle: "Jegyezd meg!",
+      irregulars: ["meg akarta beszélni", "meg fogja beszélni", "megbeszéli", "megfogja"],
+      image: "magyarazat02.png",
+      imageAlt: "Infografika az igekötős igék egybe- és különírásáról, különös tekintettel a közbeékelődésre"
     }
   },
   {
