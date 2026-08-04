@@ -7,7 +7,8 @@ const state = {
   screen: "intro",
   index: 0,
   answers: Array(TASKS.length).fill(null),
-  midpointShown: false
+  midpointShown: false,
+  reviewIndex: 0
 };
 
 const labels = {
@@ -17,8 +18,19 @@ const labels = {
   neither: "Egyik sem helyes"
 };
 
+const symbols = {
+  first: "1",
+  second: "2",
+  both: "X",
+  neither: "0"
+};
+
 function isCorrect(task, answer) {
   return Array.isArray(task.correct) ? task.correct.includes(answer) : task.correct === answer;
+}
+
+function primaryCorrect(task) {
+  return Array.isArray(task.correct) ? task.correct[0] : task.correct;
 }
 
 function answeredCount() {
@@ -45,6 +57,7 @@ function renderIntro() {
       <div class="hero-inner">
         <span class="badge">✦ 2026. januári feladatok</span>
         <h2>Melyik alak helyes?</h2>
+        <p class="source-note">Központi írásbeli felvételi: 5. feladat és pótfelvételi: 4. feladat</p>
         <p class="lead">Néha csak az egyik, néha mindkettő. Olykor pedig egyik sem. Tizenkét rövid döntés vár rád, közben végig látod a haladásodat és az eddig megszerzett pontjaidat.</p>
         <button class="primary" id="startBtn">Kezdhetjük</button>
       </div>
@@ -67,6 +80,7 @@ function renderQuestion() {
         <span>${state.index + 1}. feladat</span>
         <span>1 pont</span>
       </div>
+      <p class="task-source">${task.source}</p>
       <h2>Melyik alak helyes?</h2>
       <div class="word-pair">
         <div class="word"><span>${task.first}</span></div>
@@ -74,7 +88,9 @@ function renderQuestion() {
       </div>
       <div class="answers" role="group" aria-label="Válaszlehetőségek">
         ${Object.entries(labels).map(([value, label]) => `
-          <button class="answer ${selected === value ? "selected" : ""}" data-answer="${value}" aria-pressed="${selected === value}">${label}</button>
+          <button class="answer ${selected === value ? "selected" : ""}" data-answer="${value}" aria-pressed="${selected === value}">
+            <span class="answer-symbol">${symbols[value]}</span>${label}
+          </button>
         `).join("")}
       </div>
       <div class="navigation">
@@ -141,25 +157,114 @@ function renderResult() {
       <span class="badge">Kész a feladatsor</span>
       <h2>${resultTitle(total)}</h2>
       <div class="result-score"><div><strong>${total}/12</strong><span>pont</span></div></div>
-      <p class="lead">${weakTags.length ? `A további gyakorláshoz ezeket a területeket érdemes figyelnünk: <strong>${weakTags.join(", ")}</strong>.` : "Minden területen biztosan teljesítettél."}</p>
-      <div class="review">
-        ${TASKS.map((task, index) => {
-          const correct = isCorrect(task, state.answers[index]);
-          return `
-            <div class="review-item ${correct ? "correct" : "wrong"}">
-              <span class="mark">${correct ? "✓" : "•"}</span>
-              <div>
-                <strong>${task.first} – ${task.second}</strong>
-                ${!correct && task.explanation ? `<div class="explanation">${task.explanation}</div>` : ""}
-              </div>
-              <small>${correct ? "1 pont" : "0 pont"}</small>
-            </div>`;
-        }).join("")}
+      ${weakTags.length ? `
+        <div class="focus-block">
+          <p>Érdemes még gyakorolnod:</p>
+          <div class="tag-list">${weakTags.map(tag => `<span class="topic-tag">${tag}</span>`).join("")}</div>
+        </div>` : `<p class="lead">Minden területen biztosan teljesítettél.</p>`}
+      <div class="result-actions">
+        <button class="primary" id="reviewBtn">Válaszaim áttekintése</button>
+        <button class="secondary" id="restartBtn">Újrakezdem</button>
       </div>
-      <button class="primary" id="restartBtn">Újrakezdem</button>
     </section>`;
 
+  document.getElementById("reviewBtn").addEventListener("click", () => {
+    state.reviewIndex = firstWrongIndex();
+    renderReview();
+  });
   document.getElementById("restartBtn").addEventListener("click", restart);
+}
+
+function renderReview() {
+  state.screen = "review";
+  const task = TASKS[state.reviewIndex];
+  const answer = state.answers[state.reviewIndex];
+  const correct = isCorrect(task, answer);
+  const correctKey = primaryCorrect(task);
+  const hasAlternative = Array.isArray(task.correct) && task.correct.length > 1;
+
+  app.innerHTML = `
+    <section class="review-screen">
+      <div class="review-toolbar">
+        <button class="nav-btn" id="resultBtn">← Eredmény</button>
+        <span>${state.reviewIndex + 1} / ${TASKS.length}</span>
+      </div>
+      <p class="task-source">${task.source}</p>
+      <div class="review-status ${correct ? "correct" : "wrong"}">
+        <span class="status-icon">${correct ? "✓" : "!"}</span>
+        <div>
+          <strong>${correct ? "Helyes döntés" : "Ezt most érdemes átnézni"}</strong>
+          <span>${correct ? "1 pont" : "0 pont"}</span>
+        </div>
+      </div>
+
+      <div class="review-words">
+        <div class="review-word"><small>Első alak</small><strong>${task.first}</strong></div>
+        <div class="review-word"><small>Második alak</small><strong>${task.second}</strong></div>
+      </div>
+
+      <div class="answer-comparison">
+        <div>
+          <small>A te válaszod</small>
+          <strong><span class="answer-code">${symbols[answer]}</span>${labels[answer]}</strong>
+        </div>
+        <div class="correct-answer-box">
+          <small>Helyes megoldás</small>
+          <strong><span class="answer-code">${symbols[correctKey]}</span>${labels[correctKey]}</strong>
+          ${hasAlternative ? `<em>A feladat egy másik választ is elfogad.</em>` : ""}
+        </div>
+      </div>
+
+      <div class="short-explanation">
+        <h3>Röviden</h3>
+        <p>${task.explanation}</p>
+      </div>
+
+      ${task.learn ? `
+        <details class="learning-card" ${!correct ? "open" : ""}>
+          <summary>Nézzük meg részletesebben</summary>
+          <div class="learning-content">
+            <h3>${task.learn.title}</h3>
+            <p>${task.learn.body}</p>
+            <div class="remember-box"><strong>Jegyezd meg!</strong><span>${task.learn.rule}</span></div>
+          </div>
+        </details>` : ""}
+
+      <div class="review-navigation">
+        <button class="nav-btn" id="prevReviewBtn" ${state.reviewIndex === 0 ? "disabled" : ""}>← Előző</button>
+        <div class="review-dots" aria-label="Feladatok">
+          ${TASKS.map((item, index) => `<button class="review-dot ${index === state.reviewIndex ? "active" : ""} ${isCorrect(item, state.answers[index]) ? "correct" : "wrong"}" data-index="${index}" aria-label="${index + 1}. feladat"></button>`).join("")}
+        </div>
+        <button class="nav-btn next" id="nextReviewBtn">${state.reviewIndex === TASKS.length - 1 ? "Vissza az eredményhez" : "Következő →"}</button>
+      </div>
+    </section>`;
+
+  document.getElementById("resultBtn").addEventListener("click", renderResult);
+  document.getElementById("prevReviewBtn").addEventListener("click", () => {
+    if (state.reviewIndex > 0) {
+      state.reviewIndex--;
+      renderReview();
+    }
+  });
+  document.getElementById("nextReviewBtn").addEventListener("click", () => {
+    if (state.reviewIndex === TASKS.length - 1) {
+      renderResult();
+    } else {
+      state.reviewIndex++;
+      renderReview();
+    }
+  });
+  app.querySelectorAll(".review-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
+      state.reviewIndex = Number(dot.dataset.index);
+      renderReview();
+    });
+  });
+}
+
+function firstWrongIndex() {
+  const index = TASKS.findIndex((task, taskIndex) => !isCorrect(task, state.answers[taskIndex]));
+  return index === -1 ? 0 : index;
 }
 
 function getWeakTags() {
@@ -171,7 +276,7 @@ function getWeakTags() {
   });
   return Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
+    .slice(0, 4)
     .map(([tag]) => tag);
 }
 
@@ -186,6 +291,7 @@ function restart() {
   state.index = 0;
   state.answers = Array(TASKS.length).fill(null);
   state.midpointShown = false;
+  state.reviewIndex = 0;
   renderIntro();
 }
 
