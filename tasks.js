@@ -10,22 +10,14 @@ const TASKS = [
     learn: {
       title: "Mikor írjuk azt, hogy mond, és mikor azt, hogy mondd?",
       comparison: [
-        {
-          word: "mond",
-          subtitle: "Kijelentő mód",
-          examples: [
-            { correct: true, text: "Péter igazat mond." },
-            { correct: false, text: "Péter igazat mondd." }
-          ]
-        },
-        {
-          word: "mondd",
-          subtitle: "Felszólító mód, határozott ragozás",
-          examples: [
-            { correct: true, text: "Mondd el az igazat!" },
-            { correct: false, text: "Mond el az igazat!" }
-          ]
-        }
+        { word: "mond", subtitle: "Kijelentő mód", examples: [
+          { correct: true, text: "Péter igazat mond." },
+          { correct: false, text: "Péter igazat mondd." }
+        ]},
+        { word: "mondd", subtitle: "Felszólító mód, határozott ragozás", examples: [
+          { correct: true, text: "Mondd el az igazat!" },
+          { correct: false, text: "Mond el az igazat!" }
+        ]}
       ],
       ruleTitle: "Miért két d?",
       rule: "A mond ige töve d-re végződik. Ehhez kapcsolódik a felszólító mód -d jele:",
@@ -63,29 +55,21 @@ const TASKS = [
     learn: {
       title: "Mikor írjuk külön, és mikor egybe az igekötős igét?",
       comparison: [
-        {
-          word: "Különírjuk",
-          subtitle: "Ha az igekötő és az ige közé más szó ékelődik",
-          examples: [
-            { correct: true, text: "meg akarta beszélni" },
-            { correct: true, text: "meg fogja beszélni" },
-            { correct: true, text: "el szeretné mondani" },
-            { correct: true, text: "ki tudja nyitni" },
-            { correct: true, text: "be kell vinni" },
-            { correct: false, text: "megakarta beszélni" }
-          ]
-        },
-        {
-          word: "Egybeírjuk",
-          subtitle: "Ha nincs közbeékelődés: az igekötő közvetlenül az igéhez kapcsolódik",
-          examples: [
-            { correct: true, text: "megbeszéli a dolgot" },
-            { correct: true, text: "kinyitja az ajtót" },
-            { correct: true, text: "beviszi a csomagot" },
-            { correct: true, text: "megfogja a ceruzát" },
-            { correct: false, text: "meg beszéli a dolgot" }
-          ]
-        }
+        { word: "Különírjuk", subtitle: "Ha az igekötő és az ige közé más szó ékelődik", examples: [
+          { correct: true, text: "meg akarta beszélni" },
+          { correct: true, text: "meg fogja beszélni" },
+          { correct: true, text: "el szeretné mondani" },
+          { correct: true, text: "ki tudja nyitni" },
+          { correct: true, text: "be kell vinni" },
+          { correct: false, text: "megakarta beszélni" }
+        ]},
+        { word: "Egybeírjuk", subtitle: "Ha nincs közbeékelődés: az igekötő közvetlenül az igéhez kapcsolódik", examples: [
+          { correct: true, text: "megbeszéli a dolgot" },
+          { correct: true, text: "kinyitja az ajtót" },
+          { correct: true, text: "beviszi a csomagot" },
+          { correct: true, text: "megfogja a ceruzát" },
+          { correct: false, text: "meg beszéli a dolgot" }
+        ]}
       ],
       ruleTitle: "Vigyázz a fog szóval!",
       rule: "A meg fogja beszélni szerkezetben a fogja a jövő idejű összetett igealak része, ezért különírjuk. A megfogja a ceruzát mondatban a fog valódi cselekvést kifejező ige, ezért az igekötővel egybeírjuk.",
@@ -95,7 +79,7 @@ const TASKS = [
       irregularTitle: "Jegyezd meg!",
       irregulars: ["meg akarta beszélni", "meg fogja beszélni", "megbeszéli", "megfogja"],
       image: "magyarazat02.png",
-      imageAlt: "Infografika az igekötős igék egybe- és különírásáról, különös tekintettel a közbeékelődésre"
+      imageAlt: "Infografika az igekötős igék egybe- és különírásáról"
     }
   },
   {
@@ -109,27 +93,19 @@ const TASKS = [
     learn: {
       title: "Kéthetes vagy két hetes? Mindkettő helyes, de nem ugyanazt jelenti.",
       comparison: [
-        {
-          word: "kéthetes",
-          subtitle: "Egybeírjuk – időtartam vagy életkor",
-          examples: [
-            { correct: true, text: "kéthetes szabadság" },
-            { correct: true, text: "kéthetes tanfolyam" },
-            { correct: true, text: "kéthetes tábor" },
-            { correct: true, text: "kéthetes kisbaba" },
-            { correct: false, text: "két hetes szabadság" }
-          ]
-        },
-        {
-          word: "két hetes",
-          subtitle: "Különírjuk – a két a hetes szó darabszámát jelöli",
-          examples: [
-            { correct: true, text: "Két hetes vigyáz a rendre." },
-            { correct: true, text: "Két hetes kártya van nálam." },
-            { correct: true, text: "Két hetest húztam a pakliból." },
-            { correct: false, text: "Kéthetes vigyáz a rendre." }
-          ]
-        }
+        { word: "kéthetes", subtitle: "Egybeírjuk – időtartam vagy életkor", examples: [
+          { correct: true, text: "kéthetes szabadság" },
+          { correct: true, text: "kéthetes tanfolyam" },
+          { correct: true, text: "kéthetes tábor" },
+          { correct: true, text: "kéthetes kisbaba" },
+          { correct: false, text: "két hetes szabadság" }
+        ]},
+        { word: "két hetes", subtitle: "Különírjuk – a két a hetes szó darabszámát jelöli", examples: [
+          { correct: true, text: "Két hetes vigyáz a rendre." },
+          { correct: true, text: "Két hetes kártya van nálam." },
+          { correct: true, text: "Két hetest húztam a pakliból." },
+          { correct: false, text: "Kéthetes vigyáz a rendre." }
+        ]}
       ],
       ruleTitle: "Mi a különbség?",
       rule: "A kéthetes egyetlen melléknév: időtartamot vagy életkort fejez ki. A két hetes szerkezetben a hetes önálló szó, a két pedig azt jelöli, hogy belőle kettő van.",
@@ -157,12 +133,39 @@ const TASKS = [
     first: "mohácsi vész",
     second: "Mohácsi Vész",
     correct: "first",
-    tags: ["kis- és nagybetű", "történelmi esemény"],
-    explanation: "A történelmi események nevét általában kis kezdőbetűvel írjuk: mohácsi vész.",
+    tags: ["kis- és nagybetű", "történelmi esemény", "ünnep", "nevezetes nap"],
+    explanation: "A történelmi események nevét kis kezdőbetűvel írjuk: mohácsi vész. Az ünnepek és nevezetes napok neve is általában kis kezdőbetűs.",
     learn: {
-      title: "Történelmi események neve",
-      body: "A történelmi események és korszakok elnevezéseit általában kis kezdőbetűvel írjuk.",
-      rule: "Helyes alak: mohácsi vész."
+      title: "Ünnepek és történelmi események helyesírása",
+      comparison: [
+        { word: "Történelmi események", subtitle: "Kis kezdőbetű", examples: [
+          { correct: true, text: "a mohácsi vész" },
+          { correct: true, text: "a francia forradalom" },
+          { correct: true, text: "a honfoglalás" },
+          { correct: true, text: "a bécsi kongresszus" },
+          { correct: true, text: "a szabadságharc" },
+          { correct: false, text: "a Mohácsi Vész" },
+          { correct: false, text: "a Francia Forradalom" }
+        ]},
+        { word: "Ünnepek, nevezetes napok", subtitle: "Kis kezdőbetű", examples: [
+          { correct: true, text: "karácsony" },
+          { correct: true, text: "húsvét" },
+          { correct: true, text: "anyák napja" },
+          { correct: true, text: "a magyar kultúra napja" },
+          { correct: true, text: "március tizenötödike" },
+          { correct: false, text: "Karácsony" },
+          { correct: false, text: "Anyák Napja" }
+        ]}
+      ],
+      ruleTitle: "Vigyázz a mondatkezdésre!",
+      rule: "A mondat első szavát mindig nagybetűvel kezdjük. Ilyenkor a nagybetű nem a történelmi esemény vagy az ünnep nevéhez tartozik, hanem a mondatkezdés miatt jelenik meg.",
+      formula: "Mohácsi vészről tanultunk ma. • Karácsonykor együtt van a család.",
+      counterTitle: "A nagybetű csak a mondatkezdés miatt van",
+      counterText: "Mondat közben kisbetűs marad: Tanultunk a mohácsi vészről. Szeretem a karácsonyt.",
+      irregularTitle: "Jegyezd meg!",
+      irregulars: ["történelmi esemény: kisbetű", "ünnep: kisbetű", "nevezetes nap: kisbetű", "mondat elején: nagybetű"],
+      image: "magyarazat04.png",
+      imageAlt: "Infografika a történelmi események, ünnepek és nevezetes napok kis kezdőbetűs írásáról"
     }
   },
   {
@@ -191,11 +194,7 @@ const TASKS = [
     correct: "second",
     tags: ["felszólító mód", "mássalhangzó"],
     explanation: "A hisz ige felszólító módú alakja: higgy.",
-    learn: {
-      title: "Rendhagyó alak",
-      body: "A hisz ige felszólító módú alakja nem higyj, hanem higgy.",
-      rule: "Helyes alak: higgy!"
-    }
+    learn: { title: "Rendhagyó alak", body: "A hisz ige felszólító módú alakja nem higyj, hanem higgy.", rule: "Helyes alak: higgy!" }
   },
   {
     id: 10,
@@ -205,11 +204,7 @@ const TASKS = [
     correct: "second",
     tags: ["toldalékolás", "rövidítés"],
     explanation: "A rövidítésekhez a toldalékot kötőjellel kapcsoljuk, és a kiejtés szerinti alakot írjuk: cm-rel.",
-    learn: {
-      title: "A kiejtés segít",
-      body: "A cm rövidítést centiméternek ejtjük, ezért a -val/-vel toldalék hasonult alakja -rel lesz.",
-      rule: "Rövidítés + toldalék: kötőjel, a toldalék alakját pedig a kiejtés határozza meg."
-    }
+    learn: { title: "A kiejtés segít", body: "A cm rövidítést centiméternek ejtjük, ezért a -val/-vel toldalék hasonult alakja -rel lesz.", rule: "Rövidítés + toldalék: kötőjel, a toldalék alakját pedig a kiejtés határozza meg." }
   },
   {
     id: 11,
@@ -219,11 +214,7 @@ const TASKS = [
     correct: "both",
     tags: ["j–ly", "jelentés"],
     explanation: "Mindkettő helyes, de mást jelent: fojt = fullaszt, folyt = folyik vagy folytat.",
-    learn: {
-      title: "Azonos hangzás, eltérő jelentés",
-      body: "A fojt jelentése: fullaszt. A folyt a folyik vagy a folytat igéhez kapcsolódik.",
-      rule: "A jelentés alapján dönthető el, melyik alak illik a mondatba."
-    }
+    learn: { title: "Azonos hangzás, eltérő jelentés", body: "A fojt jelentése: fullaszt. A folyt a folyik vagy a folytat igéhez kapcsolódik.", rule: "A jelentés alapján dönthető el, melyik alak illik a mondatba." }
   },
   {
     id: 12,
@@ -233,10 +224,6 @@ const TASKS = [
     correct: ["first", "both"],
     tags: ["kis- és nagybetű", "földrajzi név"],
     explanation: "Mondat közben a dél-európai alak helyes; mondatkezdő helyzetben a Dél-európai is elfogadható.",
-    learn: {
-      title: "A mondat helye is számít",
-      body: "Mondat közben kis kezdőbetűs a dél-európai alak. Mondat elején természetesen nagy kezdőbetűvel indulhat.",
-      rule: "A feladat mondatkezdő helyzetben a nagybetűs alakot is elfogadja."
-    }
+    learn: { title: "A mondat helye is számít", body: "Mondat közben kis kezdőbetűs a dél-európai alak. Mondat elején természetesen nagy kezdőbetűvel indulhat.", rule: "A feladat mondatkezdő helyzetben a nagybetűs alakot is elfogadja." }
   }
 ];
