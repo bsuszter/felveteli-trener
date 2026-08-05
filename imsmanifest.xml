@@ -10,7 +10,7 @@
     <schemaversion>1.2</schemaversion>
   </metadata>
   <organizations default="org-1">
-    <organization identifier="org-1">">
+    <organization identifier="org-1">
       <title>Felvételi tréner – Helyesírás</title>
       <item identifier="item-1" identifierref="resource-1">
         <title>2026. januári helyesírási feladatok</title>
