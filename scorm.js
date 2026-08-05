@@ -3,6 +3,7 @@ const SCORM = (() => {
   let initialized = false;
   let lastSaved = null;
   let observerTimer = null;
+  const LOCAL_REWARD_KEY = "felveteli-trener-rewards";
 
   function findAPI(win) {
     let current = win;
@@ -66,6 +67,55 @@ const SCORM = (() => {
     observerTimer = window.setInterval(saveVisibleProgress, 500);
   }
 
+  function readSuspendData() {
+    if (!initialized || !api) return {};
+    try {
+      const raw = api.LMSGetValue("cmi.suspend_data");
+      return raw ? JSON.parse(raw) : {};
+    } catch (error) {
+      console.warn("SCORM állapotolvasási hiba:", error);
+      return {};
+    }
+  }
+
+  function writeSuspendData(data) {
+    if (!initialized || !api) return false;
+    try {
+      const serialized = JSON.stringify(data);
+      api.LMSSetValue("cmi.suspend_data", serialized);
+      return api.LMSCommit("") === "true";
+    } catch (error) {
+      console.warn("SCORM állapotmentési hiba:", error);
+      return false;
+    }
+  }
+
+  function loadRewards() {
+    if (initialized && api) {
+      return readSuspendData().rewards || null;
+    }
+    try {
+      const raw = localStorage.getItem(LOCAL_REWARD_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      console.warn("Helyi jutalomadat-olvasási hiba:", error);
+      return null;
+    }
+  }
+
+  function saveRewards(rewards) {
+    try {
+      localStorage.setItem(LOCAL_REWARD_KEY, JSON.stringify(rewards));
+    } catch (error) {
+      console.warn("Helyi jutalomadat-mentési hiba:", error);
+    }
+
+    if (!initialized || !api) return true;
+    const data = readSuspendData();
+    data.rewards = rewards;
+    return writeSuspendData(data);
+  }
+
   function init() {
     try {
       api = findAPI(window);
@@ -116,6 +166,8 @@ const SCORM = (() => {
     init,
     setProgress,
     setResult,
+    loadRewards,
+    saveRewards,
     finish,
     isConnected: () => initialized
   };
