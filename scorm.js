@@ -51,10 +51,11 @@ const SCORM = (() => {
     const progress = readVisibleProgress();
     if (!progress || progress.answered === 0) return;
 
-    const key = `${progress.points}:${progress.answered}:${progress.total}`;
+    const completed = Boolean(document.querySelector(".result:not(.practice-result)"))
+      && progress.answered >= progress.total;
+    const key = `${progress.points}:${progress.answered}:${progress.total}:${completed}`;
     if (key === lastSaved) return;
 
-    const completed = progress.answered >= progress.total;
     if (commitScore(progress.points, progress.total, completed)) {
       lastSaved = key;
     }
@@ -91,7 +92,7 @@ const SCORM = (() => {
 
   function setResult(points, total) {
     const success = commitScore(points, total, true);
-    if (success) lastSaved = `${points}:${total}:${total}`;
+    if (success) lastSaved = `${points}:${total}:${total}:true`;
     return success;
   }
 
