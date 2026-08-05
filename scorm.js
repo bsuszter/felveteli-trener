@@ -1,6 +1,7 @@
 const SCORM = (() => {
   let api = null;
   let initialized = false;
+  let resultLocked = false;
   let lastSaved = null;
   let observerTimer = null;
   const LOCAL_REWARD_KEY = "felveteli-trener-rewards";
@@ -20,12 +21,15 @@ const SCORM = (() => {
 
   function commitScore(points, total, completed) {
     if (!initialized || !api) return false;
+    if (resultLocked && !completed) return false;
     try {
       api.LMSSetValue("cmi.core.score.min", "0");
       api.LMSSetValue("cmi.core.score.max", String(total));
       api.LMSSetValue("cmi.core.score.raw", String(points));
       api.LMSSetValue("cmi.core.lesson_status", completed ? "completed" : "incomplete");
-      return api.LMSCommit("") === "true";
+      const success = api.LMSCommit("") === "true";
+      if (success && completed) resultLocked = true;
+      return success;
     } catch (error) {
       console.warn("SCORM pontmentési hiba:", error);
       return false;
@@ -49,6 +53,7 @@ const SCORM = (() => {
   }
 
   function saveVisibleProgress() {
+    if (resultLocked) return;
     const progress = readVisibleProgress();
     if (!progress || progress.answered === 0) return;
 
@@ -81,8 +86,7 @@ const SCORM = (() => {
   function writeSuspendData(data) {
     if (!initialized || !api) return false;
     try {
-      const serialized = JSON.stringify(data);
-      api.LMSSetValue("cmi.suspend_data", serialized);
+      api.LMSSetValue("cmi.suspend_data", JSON.stringify(data));
       return api.LMSCommit("") === "true";
     } catch (error) {
       console.warn("SCORM állapotmentési hiba:", error);
@@ -91,9 +95,7 @@ const SCORM = (() => {
   }
 
   function loadRewards() {
-    if (initialized && api) {
-      return readSuspendData().rewards || null;
-    }
+    if (initialized && api) return readSuspendData().rewards || null;
     try {
       const raw = localStorage.getItem(LOCAL_REWARD_KEY);
       return raw ? JSON.parse(raw) : null;
@@ -123,6 +125,7 @@ const SCORM = (() => {
       initialized = api.LMSInitialize("") === "true";
       if (initialized) {
         const status = api.LMSGetValue("cmi.core.lesson_status");
+        resultLocked = status === "completed" || status === "passed" || status === "failed";
         if (!status || status === "not attempted") {
           api.LMSSetValue("cmi.core.lesson_status", "incomplete");
           api.LMSCommit("");
@@ -137,10 +140,12 @@ const SCORM = (() => {
   }
 
   function setProgress(points, total) {
+    if (resultLocked) return false;
     return commitScore(points, total, false);
   }
 
   function setResult(points, total) {
+    if (resultLocked) return true;
     const success = commitScore(points, total, true);
     if (success) lastSaved = `${points}:${total}:${total}:true`;
     return success;
@@ -169,7 +174,8 @@ const SCORM = (() => {
     loadRewards,
     saveRewards,
     finish,
-    isConnected: () => initialized
+    isConnected: () => initialized,
+    isResultLocked: () => resultLocked
   };
 })();
 
