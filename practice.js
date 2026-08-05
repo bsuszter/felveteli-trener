@@ -61,7 +61,7 @@ const PRACTICE_TASKS = [
 
   { id: "jel-1", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A füst ___ bennünket.”", options: ["fojt", "folyt"], correct: 0, explanation: "A fojt jelentése: fullaszt." },
   { id: "jel-2", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A patak tovább ___.”", options: ["fojt", "folyt"], correct: 1, explanation: "A folyt itt a folyik ige múlt idejű alakja." },
-  { id: "jel-3", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A gazda ___ a kutyát.”", options: ["hajtja", "hagyja"], correct: 0, explanation: "A hajtja jelentése: tereli, mozgatja." },
+  { id: "jel-3", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A pásztor ___ a nyájat.”", options: ["hajtja", "hagyja"], correct: 0, explanation: "A hajtja jelentése itt: tereli, haladásra készteti." },
   { id: "jel-4", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A tanár ___ a diákot dolgozni.”", options: ["hadja", "hagyja"], correct: 1, explanation: "A hagyja szóban gy + j kapcsolatot írunk." },
-  { id: "jel-5", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A szerelő ___ a csavart.”", options: ["meghúzza", "meg húzza"], correct: 0, explanation: "Itt az igekötő közvetlenül az igéhez kapcsolódik; a szó jelentése: szorosabbra húzza." }
+  { id: "jel-5", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A sportoló nagy ___ emel.”", options: ["súlyt", "sújt"], correct: 0, explanation: "A súlyt a súly főnév tárgyragos alakja. A sújt ige jelentése: csapást mér, lesújt." }
 ];
