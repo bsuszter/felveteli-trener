@@ -84,9 +84,9 @@ A `practice.js` fájlban aktív feladatok pedagógiai ellenőrző jegyzéke. A *
 
 1. A füst **fojt** bennünket. / A füst folyt bennünket.
 2. A patak tovább fojt. / A patak tovább **folyt**.
-3. A gazda **hajtja** a kutyát. / A gazda hagyja a kutyát.
+3. A pásztor **hajtja** a nyájat. / A pásztor hagyja a nyájat.
 4. A tanár hadja a diákot dolgozni. / A tanár **hagyja** a diákot dolgozni.
-5. A szerelő **meghúzza** a csavart. / A szerelő meg húzza a csavart.
+5. A sportoló nagy **súlyt** emel. / A sportoló nagy sújt emel.
 
 ## Összesítés
 
