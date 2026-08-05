@@ -121,6 +121,19 @@
 .coin-summary strong, .coin-summary span { display: block; }
 .coin-summary strong { color: #725426; font-size: 1.08rem; }
 .coin-summary span { margin-top: 3px; color: var(--muted); font-size: .9rem; }
+.scorm-attempt-notice {
+  max-width: 720px;
+  margin: 18px auto 0;
+  padding: 16px 18px;
+  border-radius: 17px;
+  background: #eef4fb;
+  border: 1px solid rgba(61, 104, 148, .18);
+  text-align: left;
+}
+.scorm-attempt-notice strong,
+.scorm-attempt-notice span { display: block; }
+.scorm-attempt-notice strong { color: #315f87; }
+.scorm-attempt-notice span { margin-top: 5px; color: var(--muted); line-height: 1.55; }
 
 @media (max-width: 720px) {
   .scoreboard { grid-template-columns: repeat(2, 1fr); }
