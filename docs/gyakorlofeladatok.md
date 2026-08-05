@@ -1,220 +1,96 @@
-# Gyakorlófeladatok
+# Gyakorlófeladatok – teljes bank
 
-Ez a dokumentum a `practice.js` fájlban jelenleg aktív gyakorlófeladatokat tartalmazza pedagógiai ellenőrzéshez.
+A `practice.js` fájlban aktív feladatok pedagógiai ellenőrző jegyzéke. A **félkövér** válasz a helyes.
 
 ## Felszólító mód
 
-### felsz-1
+1. **Melyik mondat helyes?**  
+   Küld el a levelet! / **Küldd el a levelet!**  
+   _A küld ige d-re végződik, ehhez kapcsolódik a felszólító mód -d jele: küldd._
 
-**Kérdés:** Melyik mondat helyes?
+2. **Melyik mondat helyes?**  
+   **Mondd meg az igazat!** / Mond meg az igazat!  
+   _A mond felszólító módú, határozott ragozású alakja: mondd._
 
-- Küld el a levelet!
-- **Küldd el a levelet!**
+3. **Melyik mondat helyes?**  
+   **Hagyj egy kis időt!** / Haggy egy kis időt!  
+   _A hagy igéhez a felszólító mód -j jele kapcsolódik: hagyj._
 
-**Helyes válasz:** 2. lehetőség
+4. **Melyik mondat helyes?**  
+   Higyj nekem! / **Higgy nekem!**  
+   _A hisz ige rendhagyó felszólító módú alakja: higgy._
 
-**Magyarázat:** A küld ige d-re végződik, ehhez kapcsolódik a -d jel: küldd.
-
-**Kapcsolódó témák:** felszólító mód; d-re végződő igék
-
-**Állapot:** aktív
-
----
-
-### felsz-2
-
-**Kérdés:** Melyik alak helyes?
-
-- **Mondd meg az igazat!**
-- Mond meg az igazat!
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** A mond felszólító módú, határozott ragozású alakja: mondd.
-
-**Kapcsolódó témák:** felszólító mód; d-re végződő igék
-
-**Állapot:** aktív
-
----
-
-### felsz-3
-
-**Kérdés:** Melyik mondat helyes?
-
-- **Hagyj egy kis időt!**
-- Haggy egy kis időt!
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** A hagy igéhez a -j jel kapcsolódik: hagyj.
-
-**Kapcsolódó témák:** felszólító mód; gy + j
-
-**Állapot:** aktív
-
----
-
-### felsz-4
-
-**Kérdés:** Melyik alak helyes?
-
-- Higyj nekem!
-- **Higgy nekem!**
-
-**Helyes válasz:** 2. lehetőség
-
-**Magyarázat:** A hisz rendhagyó felszólító módú alakja: higgy.
-
-**Kapcsolódó témák:** felszólító mód; rendhagyó ige
-
-**Állapot:** aktív
+5. **Melyik alak illik a mondatba? „___ le a neved!”**  
+   Ír / **Írd**  
+   _Az ír igéhez a -d jel kapcsolódik: írd._
 
 ## Igekötők
 
-### igekoto-1
+1. Megfogom nézni. / **Meg fogom nézni.**
+2. **El szeretném olvasni.** / Elszeretném olvasni.
+3. **Becsukja az ablakot.** / Be csukja az ablakot.
+4. **Ki kell nyitni az ajtót.** / Kikell nyitni az ajtót.
+5. **Nem vitte el a könyvet.** / Nem elvitte a könyvet.
 
-**Kérdés:** Melyik mondat helyes?
+## Egybe- és különírás
 
-- **Meg fogom nézni.**
-- Megfogom nézni.
+1. **kéthetes tábor** / két hetes tábor
+2. Kéthetes áll a kapuban. / **Két hetes áll a kapuban.**
+3. **háromnapos kirándulás** / három napos kirándulás
+4. **ötéves gyermek** / öt éves gyermek
+5. **Két ötösöm lett.** / Kétötösöm lett.
 
-**Helyes válasz:** 1. lehetőség
+## J és ly
 
-**Magyarázat:** A fogom az igekötő és az ige közé ékelődik, ezért különírjuk.
+1. **muszáj** / muszály
+2. **sajog** / salyog
+3. **folyosó** / fojosó
+4. **akadály** / akadaj
+5. **bója** / bólya
 
-**Kapcsolódó témák:** igekötő; közbeékelődés
+## Hosszú és rövid magánhangzók
 
-**Állapot:** aktív
+1. **ígér** / igér
+2. **kíván** / kiván
+3. **szívesen** / szivesen
+4. **dicsér** / dícsér
+5. **hirdet** / hírdet
 
----
+## Tulajdonnevek
 
-### igekoto-2
-
-**Kérdés:** Melyik mondat helyes?
-
-- **El szeretném olvasni.**
-- Elszeretném olvasni.
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** A szeretném közbeékelődik, ezért az igekötőt különírjuk.
-
-**Kapcsolódó témák:** igekötő; közbeékelődés
-
-**Állapot:** aktív
-
----
-
-### igekoto-3
-
-**Kérdés:** Melyik mondat helyes?
-
-- **Becsukja az ablakot.**
-- Be csukja az ablakot.
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** Nincs közbeékelődés, ezért az igekötős igét egybeírjuk.
-
-**Kapcsolódó témák:** igekötő; egybeírás
-
-**Állapot:** aktív
-
----
-
-### igekoto-4
-
-**Kérdés:** Melyik mondat helyes?
-
-- **Ki kell nyitni az ajtót.**
-- Kikell nyitni az ajtót.
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** A kell az igekötő és az ige közé kerül, ezért különírjuk.
-
-**Kapcsolódó témák:** igekötő; közbeékelődés
-
-**Állapot:** aktív
+1. **Batthyány** / Batthyányi
+2. **Széchenyi István** / Szécsényi István
+3. **Kölcsey Ferenc** / Kölcsei Ferenc
+4. **Vörösmarty Mihály** / Vörösmarthy Mihály
+5. **Móricz Zsigmond** / Móritz Zsigmond
 
 ## Kis- és nagybetű
 
-### nagybetu-1
+1. **a francia forradalom** / a Francia Forradalom
+2. **karácsony** / Karácsony
+3. **dél-kínai táj** / Dél-kínai táj
+4. **Mohácsi vészről tanultunk.** / mohácsi vészről tanultunk.
+5. **anyák napja** / Anyák Napja
 
-**Kérdés:** Melyik alak helyes mondat közben?
+## Rövidítések toldalékolása
 
-- **a francia forradalom**
-- a Francia Forradalom
+1. **cm-rel** / cm-el
+2. **kg-mal** / kg-al
+3. **m-rel** / m-el
+4. **Ft-tal** / Ft-al
+5. **2026-ban** / 2026.-ban
 
-**Helyes válasz:** 1. lehetőség
+## Azonos hangzás, eltérő jelentés
 
-**Magyarázat:** A történelmi események nevét kis kezdőbetűvel írjuk.
+1. A füst **fojt** bennünket. / A füst folyt bennünket.
+2. A patak tovább fojt. / A patak tovább **folyt**.
+3. A gazda **hajtja** a kutyát. / A gazda hagyja a kutyát.
+4. A tanár hadja a diákot dolgozni. / A tanár **hagyja** a diákot dolgozni.
+5. A szerelő **meghúzza** a csavart. / A szerelő meg húzza a csavart.
 
-**Kapcsolódó témák:** kis- és nagybetű; történelmi esemény
+## Összesítés
 
-**Állapot:** aktív
-
----
-
-### nagybetu-2
-
-**Kérdés:** Melyik alak helyes mondat közben?
-
-- **karácsony**
-- Karácsony
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** Az ünnepek nevét általában kis kezdőbetűvel írjuk.
-
-**Kapcsolódó témák:** kis- és nagybetű; ünnep
-
-**Állapot:** aktív
-
----
-
-### nagybetu-3
-
-**Kérdés:** Melyik alak helyes?
-
-- **dél-kínai táj**
-- Dél-kínai táj
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** Az -i képzős melléknévi alak kis kezdőbetűs, a kötőjelet megtartjuk.
-
-**Kapcsolódó témák:** kis- és nagybetű; földrajzi név; -i képző; kötőjel
-
-**Állapot:** aktív
-
----
-
-### nagybetu-4
-
-**Kérdés:** Melyik mondat helyes?
-
-- **Mohácsi vészről tanultunk.**
-- mohácsi vészről tanultunk.
-
-**Helyes válasz:** 1. lehetőség
-
-**Magyarázat:** Mondat elején a nagybetű a mondatkezdés miatt szükséges.
-
-**Kapcsolódó témák:** kis- és nagybetű; történelmi esemény; mondatkezdés
-
-**Állapot:** aktív
-
-## Következő bővítési területek
-
-A teljes gyakorlórendszerhez még külön feladatbank szükséges az alábbi területekhez:
-
-- j és ly;
-- hosszú és rövid magánhangzók;
-- egybe- és különírás;
-- tulajdonnevek;
-- rövidítések toldalékolása;
-- azonos hangzású, eltérő jelentésű szavak.
-
-A későbbi feladatok csak pedagógiai jóváhagyás után kerüljenek aktív állapotba a `practice.js` fájlban.
+- 9 gyakorlási téma
+- témánként 5 feladat
+- összesen 45 aktív gyakorlófeladat
+- minden fejlesztendőként kijelzett területhez elérhető gyakorlóblokk
