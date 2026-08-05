@@ -34,7 +34,9 @@ function ensureCoinCounter() {
     scoreboard.appendChild(coinBox);
   }
 
-  document.getElementById('coinText').textContent = String(rewardState.coins);
+  const coinText = document.getElementById('coinText');
+  const nextValue = String(rewardState.coins);
+  if (coinText.textContent !== nextValue) coinText.textContent = nextValue;
 }
 
 function awardTaskCoin(task) {
@@ -122,9 +124,6 @@ renderPracticeResult = function renderPracticeResultWithRewards() {
   document.getElementById('againPractice').addEventListener('click', () => startPractice(state.practiceTopic));
   ensureCoinCounter();
 };
-
-const rewardObserver = new MutationObserver(ensureCoinCounter);
-rewardObserver.observe(document.body, { childList: true, subtree: true });
 
 loadRewardState();
 ensureCoinCounter();
