@@ -1,7 +1,8 @@
 const rewardState = {
   coins: 0,
   rewardedTasks: new Set(),
-  rewardedPerfectTopics: new Set()
+  rewardedPerfectTopics: new Set(),
+  lastAwardedTaskId: null
 };
 
 function loadRewardState() {
@@ -40,6 +41,7 @@ function awardTaskCoin(task) {
   if (rewardState.rewardedTasks.has(task.id)) return 0;
   rewardState.rewardedTasks.add(task.id);
   rewardState.coins += 1;
+  rewardState.lastAwardedTaskId = task.id;
   saveRewardState();
   ensureCoinCounter();
   return 1;
@@ -54,25 +56,25 @@ function awardPerfectTopic(topic) {
   return 2;
 }
 
-const baseRenderPractice = renderPractice;
 renderPractice = function renderPracticeWithRewards() {
   state.screen = 'practice';
   const task = state.practiceTasks[state.practiceIndex];
   const answer = state.practiceAnswers[state.practiceIndex];
   const answered = answer !== null;
   const correct = answered && answer === task.correct;
-  const earned = answered && correct && rewardState.rewardedTasks.has(task.id);
+  const earnedNow = correct && rewardState.lastAwardedTaskId === task.id;
 
   app.innerHTML = `<section class="practice-screen">
     <div class="question-head"><span>${topicTitle(task.topic)}</span><span>${state.practiceIndex + 1} / ${state.practiceTasks.length}</span></div>
     <span class="topic-tag practice-topic">${topicTitle(task.topic)}</span>
     <h2>${task.prompt}</h2>
     <div class="practice-options">${task.options.map((option, index) => `<button class="practice-option ${answered ? (index === task.correct ? 'correct' : index === answer ? 'wrong' : '') : ''}" data-index="${index}" ${answered ? 'disabled' : ''}>${option}</button>`).join('')}</div>
-    ${answered ? `<div class="practice-feedback ${correct ? 'correct' : 'wrong'}"><span class="practice-feedback-icon" aria-hidden="true"></span><div><strong>${correct ? 'Helyes döntés' : 'Ezt most nézzük meg'}</strong><p>${task.explanation}</p>${correct && earned ? '<p class="coin-earned">🪙 +1 aranytallér</p>' : ''}</div></div>` : ''}
+    ${answered ? `<div class="practice-feedback ${correct ? 'correct' : 'wrong'}"><span class="practice-feedback-icon" aria-hidden="true"></span><div><strong>${correct ? 'Helyes döntés' : 'Ezt most nézzük meg'}</strong><p>${task.explanation}</p>${earnedNow ? '<p class="coin-earned">🪙 +1 aranytallér</p>' : ''}</div></div>` : ''}
     <div class="navigation"><button class="nav-btn" id="quitPractice">← Témák</button><button class="nav-btn next" id="nextPractice" ${answered ? '' : 'disabled'}>${state.practiceIndex === state.practiceTasks.length - 1 ? 'Gyakorlás befejezése' : 'Következő →'}</button></div>
   </section>`;
 
   app.querySelectorAll('.practice-option').forEach(button => button.addEventListener('click', () => {
+    rewardState.lastAwardedTaskId = null;
     const selected = Number(button.dataset.index);
     state.practiceAnswers[state.practiceIndex] = selected;
     if (selected === task.correct) {
@@ -82,9 +84,13 @@ renderPractice = function renderPracticeWithRewards() {
     renderPractice();
   }));
 
-  document.getElementById('quitPractice').addEventListener('click', renderPracticeHub);
+  document.getElementById('quitPractice').addEventListener('click', () => {
+    rewardState.lastAwardedTaskId = null;
+    renderPracticeHub();
+  });
   document.getElementById('nextPractice').addEventListener('click', () => {
     if (!answered) return;
+    rewardState.lastAwardedTaskId = null;
     if (state.practiceIndex === state.practiceTasks.length - 1) renderPracticeResult();
     else {
       state.practiceIndex++;
@@ -95,7 +101,6 @@ renderPractice = function renderPracticeWithRewards() {
   ensureCoinCounter();
 };
 
-const baseRenderPracticeResult = renderPracticeResult;
 renderPracticeResult = function renderPracticeResultWithRewards() {
   state.completedPractice[state.practiceTopic] = { score: state.practiceScore, total: state.practiceTasks.length };
   const recommended = getRecommendedTopics();
