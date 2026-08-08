@@ -7,13 +7,13 @@
       year: 2026,
       title: "Helyesírás gyakorlás 2026",
       subtitle: "2026. januári felvételi feladatok",
-      scripts: ["tasks.js", "practice.js", "scorm.js", "app.js", "rewards.js", "attempt-lock.js"]
+      scripts: ["tasks.js", "practice.js", "scorm.js", "app.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
     },
     "2025": {
       year: 2025,
       title: "Helyesírás gyakorlás 2025",
       subtitle: "2025. januári felvételi feladatok",
-      scripts: ["modules/2025/tasks.js", "practice.js", "scorm.js", "app-2025.js", "rewards.js", "attempt-lock.js"]
+      scripts: ["modules/2025/tasks.js", "practice.js", "scorm.js", "app-2025.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
     }
   };
 
@@ -81,7 +81,7 @@
   const progressTrack = document.querySelector(".progress-track");
   if (scoreboard) scoreboard.hidden = false;
   if (progressTrack) progressTrack.hidden = false;
-  setScoreboard(moduleId === "2025" ? 12 : 12);
+  setScoreboard(12);
 
   loadSequentially(selected.scripts).catch(error => {
     console.error(error);
