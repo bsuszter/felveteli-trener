@@ -5,14 +5,15 @@
   "shortTitle": "2025. januári helyesírás",
   "type": "diagnostic",
   "scormVersion": "1.2",
-  "maxScore": null,
+  "maxScore": 12,
   "runtime": {
     "tasks": "modules/2025/tasks.js",
     "index": "index.html",
-    "manifest": "imsmanifest.xml"
+    "launch": "launch-2025.html",
+    "manifestTemplate": "modules/2025/imsmanifest.xml"
   },
-  "sourceFile": "helyesírás korábbi évek.pdf – 3. oldal",
+  "sourceFile": "helyesírás korábbi évek.pdf – 3. oldal és hivatalos megoldások",
   "sharedPracticeBank": true,
   "rewards": true,
-  "status": "draft"
+  "status": "beta"
 }
