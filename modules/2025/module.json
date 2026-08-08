@@ -1,0 +1,18 @@
+{
+  "id": "spelling-2025",
+  "year": 2025,
+  "title": "Helyesírás gyakorlás 2025",
+  "shortTitle": "2025. januári helyesírás",
+  "type": "diagnostic",
+  "scormVersion": "1.2",
+  "maxScore": null,
+  "runtime": {
+    "tasks": "modules/2025/tasks.js",
+    "index": "index.html",
+    "manifest": "imsmanifest.xml"
+  },
+  "sourceFile": "helyesírás korábbi évek.pdf – 3. oldal",
+  "sharedPracticeBank": true,
+  "rewards": true,
+  "status": "draft"
+}
