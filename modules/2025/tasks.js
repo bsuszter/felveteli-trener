@@ -148,7 +148,7 @@ const MODULE_2025_TASKS = [
     completed: "Játssza az eszét.",
     points: 1,
     tags: ["igealak", "mássalhangzó-kettőzés"],
-    explanation: "A helyes igealak: játssza. A feladatlapon az utasítás egy vagy két hiányzó betűről beszél, ennél a tételnél azonban a látható szóalak alapján az ssz betűkapcsolat hiányzik."
+    explanation: "A hivatalos megoldókulcs szerinti helyes alak: Játssza az eszét."
   }
 ];
 
