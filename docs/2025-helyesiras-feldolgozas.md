@@ -1,6 +1,6 @@
 # 2025. januári helyesírás – feldolgozás
 
-Forrás: `helyesírás korábbi évek.pdf`, 3. oldal.
+Forrás: `helyesírás korábbi évek.pdf`, 3. oldal és a hozzá tartozó hivatalos megoldókulcs.
 
 ## 1. Helyesírási totó
 
@@ -24,18 +24,16 @@ A forrásban szereplő megoldókulcs:
 
 ## 2. Betűpótlás szólásokban és közmondásokban
 
-A PDF ezen részén nem látható külön megoldókulcs, ezért az alábbi kiegészítések a feladat szövegéből rekonstruált helyes alakok. Beépítés előtt pedagógiai ellenőrzésre kerülnek.
+A hivatalos megoldókulcs mind a hat tétel helyes alakját megadja. Minden jó megoldás 1 pontot ér.
 
-1. Lassan a tes…el! → **Lassan a testtel!** → hiányzó rész: `tt`
-2. El…l tűz, hátul víz. → **Elöl tűz, hátul víz.** → hiányzó rész: `ö`
-3. Az egyik tizenkilenc, a másik egy hí…án húsz. → **Az egyik tizenkilenc, a másik egy híján húsz.** → hiányzó rész: `j`
-4. Az …géret szép szó, ha megtartják, úgy jó. → **Az ígéret szép szó, ha megtartják, úgy jó.** → hiányzó rész: `í`
-5. Szü…ség törvényt bont. → **Szükség törvényt bont.** → hiányzó rész: `k`
-6. Ját…a az eszét. → **Játssza az eszét.** → hiányzó rész: `ssz`
+1. **Lassan a testtel!** → hiányzó rész: `tt`
+2. **Elöl tűz, hátul víz.** → hiányzó rész: `ö`
+3. **Az egyik tizenkilenc, a másik egy híján húsz.** → hiányzó rész: `j`
+4. **Az ígéret szép szó, ha megtartják, úgy jó.** → hiányzó rész: `í`
+5. **Szükség törvényt bont.** → hiányzó rész: `k`
+6. **Játssza az eszét.** → hiányzó rész: `ssz`
 
-### Forrásbeli megjegyzés
-
-A feladat utasítása szerint „a hiányzó egy vagy két betűt” kell pótolni. Az f) tételben a látható `Ját…a` alakból a **játssza** szóhoz `ssz`, azaz három betű pótlása szükséges. Ezt a forrás és a rekonstruált helyes alak közötti eltérésként kezeljük; nem módosítjuk észrevétlenül a forrás megfogalmazását.
+A korábbi jegyzet, amely ezeket rekonstruált megoldásként kezelte, téves volt: a hivatalos megoldókulcs rendelkezésre áll.
 
 ## Technikai terv
 
