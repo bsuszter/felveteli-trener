@@ -1,0 +1,21 @@
+{
+  "id": "spelling-2026",
+  "year": 2026,
+  "title": "Helyesírás gyakorlás 2026",
+  "shortTitle": "2026. januári helyesírás",
+  "type": "diagnostic",
+  "scormVersion": "1.2",
+  "maxScore": 12,
+  "runtime": {
+    "tasks": "tasks.js",
+    "index": "index.html",
+    "manifest": "imsmanifest.xml"
+  },
+  "sources": [
+    "2026. januári központi írásbeli felvételi – 5. feladat",
+    "2026. januári pótfelvételi – 4. feladat"
+  ],
+  "sharedPracticeBank": true,
+  "rewards": true,
+  "status": "stable"
+}
