@@ -6,7 +6,7 @@
     const appRoot = document.getElementById("app");
     if (!appRoot) return;
     const section = appRoot.querySelector("section");
-    if (!section || section.querySelector(".global-year-back")) return;
+    if (!section || section.querySelector(".module-return, .global-year-back")) return;
 
     const link = document.createElement("a");
     link.className = "global-year-back";
