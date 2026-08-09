@@ -1,6 +1,6 @@
 # Gyakorlófeladatok – teljes bank
 
-A `practice.js` és a 2025-ös `modules/2025/practice-2025.js` fájlban aktív feladatok pedagógiai ellenőrző jegyzéke. A **félkövér** válasz a helyes.
+A `practice.js` fájlban aktív, közös helyesírási gyakorlóbank pedagógiai ellenőrző jegyzéke. A **félkövér** válasz a helyes.
 
 ## Felszólító mód
 
@@ -88,7 +88,7 @@ A `practice.js` és a 2025-ös `modules/2025/practice-2025.js` fájlban aktív f
 4. A tanár hadja a diákot dolgozni. / A tanár **hagyja** a diákot dolgozni.
 5. A sportoló nagy **súlyt** emel. / A sportoló nagy sújt emel.
 
-## Mássalhangzók és toldalékolás – 2025-ös bővítés
+## Mássalhangzók és toldalékolás
 
 1. **Lassan a testtel!** / Lassan a testel!  
    _A -val/-vel rag v-je teljesen hasonul a szó végi t-hez: test + vel → testtel._
@@ -110,5 +110,5 @@ A `practice.js` és a 2025-ös `modules/2025/practice-2025.js` fájlban aktív f
 - 10 gyakorlási téma
 - témánként 5 feladat
 - összesen 50 aktív gyakorlófeladat
-- a 2025-ös és a 2026-os diagnosztikában minden fejlesztendőként kijelzett területhez elérhető gyakorlóblokk
-- a 2025-ös „Mássalhangzók és toldalékolás” blokk csak a 2025-ös modulban jelenik meg; a közös 45 feladatos bankot nem másolja le
+- a teljes bank közös: a 2025-ös és a 2026-os modul ugyanazt a `practice.js` állományt használja
+- az egyes diagnosztikák csak a tanuló hibáihoz kapcsolódó témákat ajánlják személyre szabottan; a többi téma szabadon választható
