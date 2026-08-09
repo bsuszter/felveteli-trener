@@ -13,7 +13,7 @@
       year: 2025,
       title: "Helyesírás gyakorlás 2025",
       subtitle: "2025. januári felvételi feladatok",
-      scripts: ["modules/2025/tasks.js", "practice.js", "scorm.js", "app-2025.js", "modules/2025/practice-2025.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
+      scripts: ["modules/2025/tasks.js", "practice.js", "scorm.js", "app-2025.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
     }
   };
 
