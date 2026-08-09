@@ -7,7 +7,8 @@ const PRACTICE_TOPICS = {
   "tulajdonnevek": { title: "Tulajdonnevek", description: "Személynevek és családnevek pontos írásmódja." },
   "kis- és nagybetű": { title: "Kis- és nagybetű", description: "Történelmi események, ünnepek és földrajzi nevek írása." },
   "rövidítések": { title: "Rövidítések toldalékolása", description: "A rövidítésekhez kapcsolódó toldalékok és a kötőjel használata." },
-  "jelentés": { title: "Azonos hangzás, eltérő jelentés", description: "A jelentés alapján kiválasztandó, hasonló hangzású szóalakok." }
+  "jelentés": { title: "Azonos hangzás, eltérő jelentés", description: "A jelentés alapján kiválasztandó, hasonló hangzású szóalakok." },
+  "mássalhangzók és toldalékolás": { title: "Mássalhangzók és toldalékolás", description: "Hasonulás, kettőzés és nehezebb mássalhangzó-kapcsolatok toldalékos és ragozott szóalakokban." }
 };
 
 const PRACTICE_TASKS = [
@@ -63,5 +64,11 @@ const PRACTICE_TASKS = [
   { id: "jel-2", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A patak tovább ___.”", options: ["fojt", "folyt"], correct: 1, explanation: "A folyt itt a folyik ige múlt idejű alakja." },
   { id: "jel-3", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A pásztor ___ a nyájat.”", options: ["hajtja", "hagyja"], correct: 0, explanation: "A hajtja jelentése itt: tereli, haladásra készteti." },
   { id: "jel-4", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A tanár ___ a diákot dolgozni.”", options: ["hadja", "hagyja"], correct: 1, explanation: "A hagyja szóban gy + j kapcsolatot írunk." },
-  { id: "jel-5", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A sportoló nagy ___ emel.”", options: ["súlyt", "sújt"], correct: 0, explanation: "A súlyt a súly főnév tárgyragos alakja. A sújt ige jelentése: csapást mér, lesújt." }
+  { id: "jel-5", topic: "jelentés", prompt: "Melyik szó illik a mondatba? „A sportoló nagy ___ emel.”", options: ["súlyt", "sújt"], correct: 0, explanation: "A súlyt a súly főnév tárgyragos alakja. A sújt ige jelentése: csapást mér, lesújt." },
+
+  { id: "mht-1", topic: "mássalhangzók és toldalékolás", prompt: "Melyik mondat helyes?", options: ["Lassan a testtel!", "Lassan a testel!"], correct: 0, explanation: "A -val/-vel rag v-je teljesen hasonul a szó végi t-hez: test + vel → testtel." },
+  { id: "mht-2", topic: "mássalhangzók és toldalékolás", prompt: "Melyik mondat helyes?", options: ["Játssza az eszét.", "Játsza az eszét."], correct: 0, explanation: "A játszik ige helyes alakja ebben a mondatban: játssza." },
+  { id: "mht-3", topic: "mássalhangzók és toldalékolás", prompt: "Melyik alak helyes?", options: ["szükség", "szügség"], correct: 0, explanation: "A szükség szóban k-t írunk: szükség." },
+  { id: "mht-4", topic: "mássalhangzók és toldalékolás", prompt: "Melyik alak helyes?", options: ["kézzel", "kézel"], correct: 0, explanation: "A kéz szóhoz kapcsolódó -val/-vel rag v-je teljesen hasonul: kéz + vel → kézzel." },
+  { id: "mht-5", topic: "mássalhangzók és toldalékolás", prompt: "Melyik alak helyes?", options: ["azzal", "azal"], correct: 0, explanation: "Az az névmáshoz kapcsolódó -val/-vel rag v-je teljesen hasonul: az + val → azzal." }
 ];
