@@ -21,6 +21,23 @@
 
   if (moduleId !== "2025" || typeof renderQuestion !== "function") return;
 
+  // A 2025-ös feladatsor mássalhangzós és toldalékolási hibái
+  // a közös gyakorlóbank megfelelő témájához kerülnek.
+  if (typeof practiceTopicForTask === "function") {
+    const sharedPracticeTopicForTask = practiceTopicForTask;
+    practiceTopicForTask = function practiceTopicForTask2025(task) {
+      const tags = task.tags || [];
+      if (
+        tags.includes("mássalhangzó-kettőzés") ||
+        tags.includes("mássalhangzó") ||
+        tags.includes("toldalékolás")
+      ) {
+        return "mássalhangzók és toldalékolás";
+      }
+      return sharedPracticeTopicForTask(task);
+    };
+  }
+
   function splitFillSentence(task) {
     const before = String(task.before || "");
     const after = String(task.after || "");
