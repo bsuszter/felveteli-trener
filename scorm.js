@@ -179,4 +179,5 @@ const SCORM = (() => {
   };
 })();
 
+window.SCORM = SCORM;
 window.addEventListener("beforeunload", () => SCORM.finish());
