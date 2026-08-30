@@ -80,6 +80,23 @@
   font-weight: 900;
 }
 
+.practice-bank-card {
+  margin-top: 8px;
+  border-color: rgba(200,148,67,.32);
+  background: linear-gradient(135deg, #fffdf8, #fff9ea);
+}
+
+.practice-bank-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 14px 30px rgba(200,148,67,.14);
+}
+
+.practice-bank-icon {
+  background: var(--gold-soft);
+  color: #8a641e;
+  font-size: 1.55rem;
+}
+
 .module-return,
 .global-year-back {
   display: inline-block;
