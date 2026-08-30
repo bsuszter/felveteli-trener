@@ -1,6 +1,6 @@
 # Gyakorlófeladatok – teljes bank
 
-A `practice.js` fájlban aktív, közös helyesírási gyakorlóbank pedagógiai ellenőrző jegyzéke. A **félkövér** válasz a helyes.
+A `practice.js` és a közös gyakorlóbank-bővítések aktív helyesírási feladatainak pedagógiai ellenőrző jegyzéke. A **félkövér** válasz a helyes.
 
 ## Felszólító mód
 
@@ -105,10 +105,27 @@ A `practice.js` fájlban aktív, közös helyesírási gyakorlóbank pedagógiai
 5. **azzal** / azal  
    _Az az névmáshoz kapcsolódó -val/-vel rag v-je teljesen hasonul: az + val → azzal._
 
+## Számnevek írása
+
+1. **ezerkilencszázötvennyolc** / ezerkilencszáz-ötvennyolc  
+   _A kétezerig terjedő számneveket betűvel egybeírjuk._
+
+2. kétezerhuszonhat / **kétezer-huszonhat**  
+   _Kétezren felül a nem kerek számokat a nagyobb egységek határán kötőjellel tagoljuk._
+
+3. ötmillióhat / **ötmillió-hat**  
+   _Kétezren felül a nem kerek számot kötőjellel tagoljuk._
+
+4. **tizenkétezer-háromszáznegyvenöt** / tizenkétezerháromszáznegyvenöt  
+   _Kétezren felül a számnevet a nagyobb egységek határán kötőjellel tagoljuk._
+
+5. **hárommillió** / három-millió  
+   _A kerek ezreseket és milliós számokat egybeírjuk._
+
 ## Összesítés
 
-- 10 gyakorlási téma
+- 11 gyakorlási téma
 - témánként 5 feladat
-- összesen 50 aktív gyakorlófeladat
-- a teljes bank közös: a 2025-ös és a 2026-os modul ugyanazt a `practice.js` állományt használja
+- összesen 55 aktív gyakorlófeladat
+- a teljes bank közös: a 2024-es, 2025-ös és 2026-os modul ugyanazokat a közös gyakorlóblokkokat használja
 - az egyes diagnosztikák csak a tanuló hibáihoz kapcsolódó témákat ajánlják személyre szabottan; a többi téma szabadon választható
