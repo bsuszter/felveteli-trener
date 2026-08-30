@@ -23,6 +23,12 @@
     }
   };
 
+  const practiceModule = {
+    title: "Gyakorlóbank",
+    subtitle: "11 téma • 55 feladat • aranytallér",
+    scripts: ["practice.js", "practice-numbers.js", "scorm.js", "app-practice.js", "rewards.js"]
+  };
+
   function setScoreboard(total) {
     const progressText = document.getElementById("progressText");
     const scoreText = document.getElementById("scoreText");
@@ -44,7 +50,7 @@
         <div class="module-launcher-head">
           <span class="badge">Felvételi tréner</span>
           <h2>Helyesírás</h2>
-          <p class="lead">Válaszd ki, melyik év felvételi helyesírási feladataival szeretnél dolgozni.</p>
+          <p class="lead">Válassz egy felvételi évet, vagy nyisd meg közvetlenül a teljes gyakorlóbankot.</p>
         </div>
         <div class="module-grid">
           ${Object.entries(modules).sort((a, b) => b[0] - a[0]).map(([id, item]) => `
@@ -53,6 +59,11 @@
               <span class="module-copy"><strong>${item.title}</strong><small>${item.subtitle}</small></span>
               <span class="module-arrow" aria-hidden="true">→</span>
             </a>`).join("")}
+          <a class="module-card practice-bank-card" href="?module=practice">
+            <span class="module-year practice-bank-icon">✦</span>
+            <span class="module-copy"><strong>${practiceModule.title}</strong><small>${practiceModule.subtitle}</small></span>
+            <span class="module-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </section>`;
   }
@@ -69,6 +80,24 @@
 
   if (!moduleId) {
     renderLauncher();
+    return;
+  }
+
+  if (moduleId === "practice") {
+    document.documentElement.dataset.module = "practice";
+    document.title = "Felvételi tréner – Gyakorlóbank";
+    const h1 = document.querySelector(".topbar h1");
+    if (h1) h1.textContent = "Gyakorlóbank";
+
+    const scoreboard = document.querySelector(".scoreboard");
+    const progressTrack = document.querySelector(".progress-track");
+    if (scoreboard) scoreboard.hidden = false;
+    if (progressTrack) progressTrack.hidden = true;
+
+    loadSequentially(practiceModule.scripts).catch(error => {
+      console.error(error);
+      document.getElementById("app").innerHTML = `<section class="hero"><div class="hero-inner"><h2>Betöltési hiba</h2><p class="lead">A gyakorlóbank nem tölthető be.</p><a class="primary module-back-link" href="index.html">Vissza a modulválasztóhoz</a></div></section>`;
+    });
     return;
   }
 
