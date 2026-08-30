@@ -33,6 +33,7 @@ function ensureCoinCounter() {
     coinBox.innerHTML = '<span id="coinText">0</span><small>🪙 aranytallér</small>';
     scoreboard.appendChild(coinBox);
   }
+  coinBox.hidden = false;
 
   const coinText = document.getElementById('coinText');
   const nextValue = String(rewardState.coins);
@@ -109,17 +110,18 @@ renderPracticeResult = function renderPracticeResultWithRewards() {
   const remaining = recommended.filter(topic => !state.completedPractice[topic]);
   const perfect = state.practiceScore === state.practiceTasks.length;
   const bonus = perfect ? awardPerfectTopic(state.practiceTopic) : 0;
+  const standalone = Boolean(window.PRACTICE_STANDALONE);
 
   app.innerHTML = `<section class="result practice-result">
     <span class="badge">${topicTitle(state.practiceTopic)} – kész</span>
     <h2>${perfect ? 'Nagyon biztosan ment!' : 'Máris erősebb lett a tudásod.'}</h2>
     <div class="result-score small"><div><strong>${state.practiceScore}/${state.practiceTasks.length}</strong><span>gyakorlópont</span></div></div>
     <div class="coin-summary"><span class="coin-summary-icon">🪙</span><div><strong>${rewardState.coins} aranytallér</strong><span>${bonus ? `Hibátlan blokk: +${bonus} bónusztallér` : 'Az elsőre helyes válaszokért jár tallér.'}</span></div></div>
-    <p class="lead">A tallérok és a gyakorlópontok nem változtatják meg az eredeti felvételi pontszámodat: az továbbra is <strong>${score()}/12</strong>.</p>
-    <div class="result-actions">${remaining.length ? '<button class="primary" id="nextTopic">Következő ajánlott téma</button>' : ''}<button class="secondary" id="backTopics">Vissza a témákhoz</button><button class="secondary" id="againPractice">Ezt újra gyakorlom</button></div>
+    <p class="lead">${standalone ? 'Ez önálló gyakorlás: a megszerzett tallérok a gyakorlóbankban gyűlnek tovább.' : `A tallérok és a gyakorlópontok nem változtatják meg az eredeti felvételi pontszámodat: az továbbra is <strong>${score()}/12</strong>.`}</p>
+    <div class="result-actions">${!standalone && remaining.length ? '<button class="primary" id="nextTopic">Következő ajánlott téma</button>' : ''}<button class="secondary" id="backTopics">Vissza a témákhoz</button><button class="secondary" id="againPractice">Ezt újra gyakorlom</button></div>
   </section>`;
 
-  if (remaining.length) document.getElementById('nextTopic').addEventListener('click', () => startPractice(remaining[0]));
+  if (!standalone && remaining.length) document.getElementById('nextTopic').addEventListener('click', () => startPractice(remaining[0]));
   document.getElementById('backTopics').addEventListener('click', renderPracticeHub);
   document.getElementById('againPractice').addEventListener('click', () => startPractice(state.practiceTopic));
   ensureCoinCounter();
