@@ -1,0 +1,19 @@
+{
+  "id": "spelling-2024",
+  "year": 2024,
+  "title": "Helyesírás gyakorlás 2024",
+  "shortTitle": "2024. januári helyesírás",
+  "type": "diagnostic",
+  "scormVersion": "1.2",
+  "maxScore": 12,
+  "runtime": {
+    "tasks": "modules/2024/tasks.js",
+    "index": "index.html",
+    "launch": "launch-2024.html",
+    "manifestTemplate": "modules/2024/imsmanifest.xml"
+  },
+  "sourceFile": "helyesírás korábbi évek.pdf – 4–5. oldal, hivatalos megoldásokkal",
+  "sharedPracticeBank": true,
+  "rewards": true,
+  "status": "draft"
+}
