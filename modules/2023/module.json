@@ -1,0 +1,18 @@
+{
+  "id": "spelling-2023",
+  "year": 2023,
+  "title": "Helyesírás gyakorlás 2023",
+  "shortTitle": "2023. januári helyesírás",
+  "type": "diagnostic",
+  "scormVersion": "1.2",
+  "maxScore": 10,
+  "runtime": {
+    "tasks": "modules/2023/tasks.js",
+    "index": "index.html",
+    "launch": "launch-2023.html",
+    "manifestTemplate": "modules/2023/imsmanifest.xml"
+  },
+  "sharedPracticeBank": true,
+  "rewards": true,
+  "status": "beta"
+}
