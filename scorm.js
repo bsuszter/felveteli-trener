@@ -27,6 +27,7 @@ const SCORM = (() => {
       api.LMSSetValue("cmi.core.score.max", String(total));
       api.LMSSetValue("cmi.core.score.raw", String(points));
       api.LMSSetValue("cmi.core.lesson_status", completed ? "completed" : "incomplete");
+      api.LMSSetValue("cmi.core.exit", completed ? "" : "suspend");
       const success = api.LMSCommit("") === "true";
       if (success && completed) resultLocked = true;
       return success;
@@ -118,6 +119,31 @@ const SCORM = (() => {
     return writeSuspendData(data);
   }
 
+  function loadAttempt() {
+    if (!initialized || !api || resultLocked) return null;
+    const attempt = readSuspendData().attempt;
+    return attempt && typeof attempt === "object" ? attempt : null;
+  }
+
+  function saveAttempt(attempt) {
+    if (!initialized || !api || resultLocked) return false;
+    const data = readSuspendData();
+    data.attempt = attempt;
+    try {
+      api.LMSSetValue("cmi.core.exit", "suspend");
+    } catch (error) {
+      console.warn("SCORM suspend állapot beállítási hiba:", error);
+    }
+    return writeSuspendData(data);
+  }
+
+  function clearAttempt() {
+    if (!initialized || !api) return false;
+    const data = readSuspendData();
+    delete data.attempt;
+    return writeSuspendData(data);
+  }
+
   function init() {
     try {
       api = findAPI(window);
@@ -128,6 +154,7 @@ const SCORM = (() => {
         resultLocked = status === "completed" || status === "passed" || status === "failed";
         if (!status || status === "not attempted") {
           api.LMSSetValue("cmi.core.lesson_status", "incomplete");
+          api.LMSSetValue("cmi.core.exit", "suspend");
           api.LMSCommit("");
         }
         startProgressObserver();
@@ -146,6 +173,7 @@ const SCORM = (() => {
 
   function setResult(points, total) {
     if (resultLocked) return true;
+    clearAttempt();
     const success = commitScore(points, total, true);
     if (success) lastSaved = `${points}:${total}:${total}:true`;
     return success;
@@ -155,6 +183,7 @@ const SCORM = (() => {
     if (!initialized || !api) return;
     try {
       saveVisibleProgress();
+      api.LMSSetValue("cmi.core.exit", resultLocked ? "" : "suspend");
       api.LMSCommit("");
       api.LMSFinish("");
       initialized = false;
@@ -173,6 +202,9 @@ const SCORM = (() => {
     setResult,
     loadRewards,
     saveRewards,
+    loadAttempt,
+    saveAttempt,
+    clearAttempt,
     finish,
     isConnected: () => initialized,
     isResultLocked: () => resultLocked
