@@ -15,7 +15,7 @@
       maxScore: 12,
       title: "Helyesírás gyakorlás 2025",
       subtitle: "2025. januári felvételi feladatok",
-      scripts: ["modules/2025/tasks.js", "practice.js", "practice-numbers.js", "scorm.js", "app-2025.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
+      scripts: ["modules/2025/tasks.js", "practice.js", "practice-numbers.js", "scorm.js", "app-2025.js", "resume-2025.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
     },
     "2024": {
       year: 2024,
