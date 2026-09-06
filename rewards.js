@@ -5,6 +5,33 @@ const rewardState = {
   lastAwardedTaskId: null
 };
 
+function aranytallerSource() {
+  const moduleId = document.documentElement.dataset.module || "";
+  if (/^\d{4}$/.test(moduleId)) return `helyesiras-${moduleId}`;
+  if (moduleId === "practice") return "helyesiras-gyakorlobank";
+  return null;
+}
+
+function buildAranytallerProtocol() {
+  const source = aranytallerSource();
+  if (!source) return null;
+
+  return {
+    version: 1,
+    source,
+    rewards: [
+      ...[...rewardState.rewardedTasks].map(id => ({
+        id: `task:${id}`,
+        type: "task"
+      })),
+      ...[...rewardState.rewardedPerfectTopics].map(topic => ({
+        id: `perfect:${topic}`,
+        type: "perfect"
+      }))
+    ]
+  };
+}
+
 function loadRewardState() {
   const saved = SCORM.loadRewards?.();
   if (!saved) return;
@@ -19,6 +46,9 @@ function saveRewardState() {
     rewardedTasks: [...rewardState.rewardedTasks],
     rewardedPerfectTopics: [...rewardState.rewardedPerfectTopics]
   });
+
+  const protocol = buildAranytallerProtocol();
+  if (protocol) SCORM.saveAranytaller?.(protocol);
 }
 
 function ensureCoinCounter() {
