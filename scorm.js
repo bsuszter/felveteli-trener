@@ -5,6 +5,7 @@ const SCORM = (() => {
   let lastSaved = null;
   let observerTimer = null;
   const LOCAL_REWARD_KEY = "felveteli-trener-rewards";
+  const LOCAL_ARANYTALLER_KEY = "felveteli-trener-aranytaller";
 
   function findAPI(win) {
     let current = win;
@@ -119,6 +120,30 @@ const SCORM = (() => {
     return writeSuspendData(data);
   }
 
+  function loadAranytaller() {
+    if (initialized && api) return readSuspendData().aranytaller || null;
+    try {
+      const raw = localStorage.getItem(LOCAL_ARANYTALLER_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      console.warn("Helyi Aranytallér-adat olvasási hiba:", error);
+      return null;
+    }
+  }
+
+  function saveAranytaller(aranytaller) {
+    try {
+      localStorage.setItem(LOCAL_ARANYTALLER_KEY, JSON.stringify(aranytaller));
+    } catch (error) {
+      console.warn("Helyi Aranytallér-adat mentési hiba:", error);
+    }
+
+    if (!initialized || !api) return true;
+    const data = readSuspendData();
+    data.aranytaller = aranytaller;
+    return writeSuspendData(data);
+  }
+
   function loadAttempt() {
     if (!initialized || !api || resultLocked) return null;
     const attempt = readSuspendData().attempt;
@@ -202,6 +227,8 @@ const SCORM = (() => {
     setResult,
     loadRewards,
     saveRewards,
+    loadAranytaller,
+    saveAranytaller,
     loadAttempt,
     saveAttempt,
     clearAttempt,
