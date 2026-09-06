@@ -12,6 +12,10 @@ function aranytallerSource() {
   return null;
 }
 
+function is2025Module() {
+  return document.documentElement.dataset.module === "2025";
+}
+
 function buildAranytallerProtocol() {
   const source = aranytallerSource();
   if (!source) return null;
@@ -60,7 +64,8 @@ function ensureCoinCounter() {
     coinBox = document.createElement('div');
     coinBox.id = 'coinBox';
     coinBox.className = 'coin-box';
-    coinBox.innerHTML = '<span id="coinText">0</span><small>🪙 aranytallér</small>';
+    const label = is2025Module() ? '🪙 tallér ebben a próbálkozásban' : '🪙 aranytallér';
+    coinBox.innerHTML = `<span id="coinText">0</span><small>${label}</small>`;
     scoreboard.appendChild(coinBox);
   }
   coinBox.hidden = false;
@@ -141,12 +146,15 @@ renderPracticeResult = function renderPracticeResultWithRewards() {
   const perfect = state.practiceScore === state.practiceTasks.length;
   const bonus = perfect ? awardPerfectTopic(state.practiceTopic) : 0;
   const standalone = Boolean(window.PRACTICE_STANDALONE);
+  const coinSummaryLabel = is2025Module()
+    ? `${rewardState.coins} tallér ebben a próbálkozásban`
+    : `${rewardState.coins} aranytallér`;
 
   app.innerHTML = `<section class="result practice-result">
     <span class="badge">${topicTitle(state.practiceTopic)} – kész</span>
     <h2>${perfect ? 'Nagyon biztosan ment!' : 'Máris erősebb lett a tudásod.'}</h2>
     <div class="result-score small"><div><strong>${state.practiceScore}/${state.practiceTasks.length}</strong><span>gyakorlópont</span></div></div>
-    <div class="coin-summary"><span class="coin-summary-icon">🪙</span><div><strong>${rewardState.coins} aranytallér</strong><span>${bonus ? `Hibátlan blokk: +${bonus} bónusztallér` : 'Az elsőre helyes válaszokért jár tallér.'}</span></div></div>
+    <div class="coin-summary"><span class="coin-summary-icon">🪙</span><div><strong>${coinSummaryLabel}</strong><span>${bonus ? `Hibátlan blokk: +${bonus} bónusztallér` : 'Az elsőre helyes válaszokért jár tallér.'}</span></div></div>
     <p class="lead">${standalone ? 'Ez önálló gyakorlás: a megszerzett tallérok a gyakorlóbankban gyűlnek tovább.' : `A tallérok és a gyakorlópontok nem változtatják meg az eredeti felvételi pontszámodat: az továbbra is <strong>${score()}/12</strong>.`}</p>
     <div class="result-actions">${!standalone && remaining.length ? '<button class="primary" id="nextTopic">Következő ajánlott téma</button>' : ''}<button class="secondary" id="backTopics">Vissza a témákhoz</button><button class="secondary" id="againPractice">Ezt újra gyakorlom</button></div>
   </section>`;
