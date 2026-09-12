@@ -7,13 +7,14 @@ const rewardState = {
 
 function aranytallerSource() {
   const moduleId = document.documentElement.dataset.module || "";
-  if (/^\d{4}$/.test(moduleId)) return `helyesiras-${moduleId}`;
-  if (moduleId === "practice") return "helyesiras-gyakorlobank";
+  if (/^\d{4}$/.test(moduleId) || moduleId === "practice") {
+    return "helyesiras-gyakorlobank";
+  }
   return null;
 }
 
-function is2025Module() {
-  return document.documentElement.dataset.module === "2025";
+function isYearModule() {
+  return /^\d{4}$/.test(document.documentElement.dataset.module || "");
 }
 
 function buildAranytallerProtocol() {
@@ -64,7 +65,7 @@ function ensureCoinCounter() {
     coinBox = document.createElement('div');
     coinBox.id = 'coinBox';
     coinBox.className = 'coin-box';
-    const label = is2025Module() ? '🪙 tallér ebben a próbálkozásban' : '🪙 aranytallér';
+    const label = isYearModule() ? '🪙 tallér ebben a próbálkozásban' : '🪙 aranytallér';
     coinBox.innerHTML = `<span id="coinText">0</span><small>${label}</small>`;
     scoreboard.appendChild(coinBox);
   }
@@ -146,7 +147,7 @@ renderPracticeResult = function renderPracticeResultWithRewards() {
   const perfect = state.practiceScore === state.practiceTasks.length;
   const bonus = perfect ? awardPerfectTopic(state.practiceTopic) : 0;
   const standalone = Boolean(window.PRACTICE_STANDALONE);
-  const coinSummaryLabel = is2025Module()
+  const coinSummaryLabel = isYearModule()
     ? `${rewardState.coins} tallér ebben a próbálkozásban`
     : `${rewardState.coins} aranytallér`;
 
