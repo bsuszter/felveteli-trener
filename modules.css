@@ -417,3 +417,38 @@ button.lotto-cell:hover:not(:disabled) {
     min-height: 70px;
   }
 }
+
+
+/* 2022: a hibás szó javításához széles, rugalmas beviteli mező */
+.sentence-fix-input {
+  flex: 1 1 280px;
+  width: min(360px, 100%);
+  min-width: 240px;
+  max-width: 420px;
+  padding: 12px 14px 10px;
+  text-align: left;
+}
+
+.fill-submit-row:has(.sentence-fix-input) {
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.fill-submit-row:has(.sentence-fix-input) .fill-submit {
+  margin-top: 0;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .sentence-fix-input {
+    flex-basis: 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .fill-submit-row:has(.sentence-fix-input) .fill-submit {
+    width: 100%;
+  }
+}
