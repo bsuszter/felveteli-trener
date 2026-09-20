@@ -49,8 +49,9 @@ const SCORM = (() => {
 
     return {
       points: Number(scoreMatch[1]),
+      scoreTotal: Number(scoreMatch[2]),
       answered: Number(progressMatch[1]),
-      total: Number(progressMatch[2])
+      taskTotal: Number(progressMatch[2])
     };
   }
 
@@ -60,11 +61,11 @@ const SCORM = (() => {
     if (!progress || progress.answered === 0) return;
 
     const completed = Boolean(document.querySelector(".result:not(.practice-result)"))
-      && progress.answered >= progress.total;
-    const key = `${progress.points}:${progress.answered}:${progress.total}:${completed}`;
+      && progress.answered >= progress.taskTotal;
+    const key = `${progress.points}:${progress.scoreTotal}:${progress.answered}:${progress.taskTotal}:${completed}`;
     if (key === lastSaved) return;
 
-    if (commitScore(progress.points, progress.total, completed)) {
+    if (commitScore(progress.points, progress.scoreTotal, completed)) {
       lastSaved = key;
     }
   }
