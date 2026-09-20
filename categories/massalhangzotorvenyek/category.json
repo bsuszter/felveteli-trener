@@ -1,0 +1,14 @@
+{
+  "id": "massalhangzotorvenyek",
+  "title": "Mássalhangzótörvények",
+  "status": "active",
+  "route": "?category=massalhangzotorvenyek",
+  "organization": "practice-bank",
+  "sourceBlocks": 15,
+  "questionCount": 25,
+  "modes": ["law", "mixed"],
+  "rewardPolicy": {
+    "practiceBank": "later",
+    "note": "Az első verzió pontozott gyakorlóbank; az Aranytallér később kapcsolható hozzá."
+  }
+}
