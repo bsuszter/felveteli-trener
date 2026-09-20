@@ -10,7 +10,7 @@
 
     const link = document.createElement("a");
     link.className = "global-year-back";
-    link.href = "index.html";
+    link.href = "index.html?category=helyesiras";
     link.textContent = "← Évválasztó";
     section.prepend(link);
   }
