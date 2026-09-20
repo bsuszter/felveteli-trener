@@ -87,7 +87,7 @@ function renderSentenceCheck(task, selected) {
         <button class="secondary" id="sentenceOkBtn">✓ Hibátlan</button>
       </div>
       <div class="fill-submit-row">
-        <input id="sentenceFixInput" class="fill-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="A helyes szóalak">
+        <input id="sentenceFixInput" class="fill-input sentence-fix-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="A helyes szóalak">
         <button class="primary fill-submit" id="submitSentenceFixBtn" disabled>Javítás beküldése</button>
       </div>`}`;
 }
