@@ -82,7 +82,7 @@ window.MASSALHANGZO_TASKS = {
       law: "teljes-jelolt",
       type: "choice",
       prompt: "Melyik szóban van írásban jelölt teljes hasonulás?",
-      context: "Már tátotta a száját, már mondta volna... de ekkor... furcsa...",
+      context: "Már tátotta a száját, már mondta volna... de ekkor... furcsa... megdöndült, megzördült, megdobbant valami. S nem is hagyta abba.",
       options: ["abba", "ekkor", "furcsa", "mondta"],
       answers: ["abba", "ekkor"]
     },
@@ -93,7 +93,7 @@ window.MASSALHANGZO_TASKS = {
       law: "zongesseg",
       type: "choice",
       prompt: "Melyik szóban van zöngésség szerinti részleges hasonulás?",
-      context: "Igen ám, de Mikkamakka nem volt otthon. Kora reggel elment a városba.",
+      context: "Kora reggel elment a városba. Ott volt valami sürgős elintéznivalója. Meg különben is, ad is valamit Vacskamati Mikkamakkára! S nem is hagyta abba.",
       options: ["hagyta", "városba", "otthon", "reggel"],
       answers: ["hagyta", "városba"]
     },
