@@ -1,6 +1,6 @@
 window.SZOLASOK_2026 = {
   year: 2026,
-  maxScore: 8,
+  maxScore: 14,
   pictureTask: {
     title: "Melyik képhez illik a jelentés?",
     instruction: "Válaszd ki azt a betűt, amelyik kép a megadott jelentéshez tartozó szólást vagy közmondást ábrázolja. Egy kép kimarad.",
@@ -56,6 +56,26 @@ window.SZOLASOK_2026 = {
       { prompt: "elfojtja az indulatát", answer: "2" },
       { prompt: "megsértődik", answer: "1" },
       { prompt: "kerüli a bizalmaskodást", answer: "5" }
+    ]
+  },
+  recallTask: {
+    title: "Rögzítsük a pontos kifejezéseket!",
+    instruction: "Nézd meg a képet, és válaszd ki, melyik szólást vagy közmondást ábrázolja. Minden jó párosítás 1 pontot ér.",
+    options: [
+      { id: "A", text: "Ágyúval lő verébre." },
+      { id: "B", text: "A vakok között a félszemű is király." },
+      { id: "C", text: "Éhes disznó makkal álmodik." },
+      { id: "D", text: "Egy tálból cseresznyéznek." },
+      { id: "E", text: "Lapátra tesz." },
+      { id: "F", text: "A bolhából elefántot csinál." }
+    ],
+    items: [
+      { figure: "A", answer: "A" },
+      { figure: "B", answer: "B" },
+      { figure: "C", answer: "C" },
+      { figure: "D", answer: "D" },
+      { figure: "E", answer: "E" },
+      { figure: "F", answer: "F" }
     ]
   }
 };
