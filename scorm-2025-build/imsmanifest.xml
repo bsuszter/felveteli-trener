@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="felveteli-trener-helyesiras-2025"
+  version="1.0"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations default="org-1">
+    <organization identifier="org-1">
+      <title>Felvételi tréner – Helyesírás 2025</title>
+      <item identifier="item-1" identifierref="resource-1">
+        <title>2025. januári helyesírási feladatok</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="resource-1" type="webcontent" adlcp:scormtype="sco" href="launch-2025.html">
+      <file href="launch-2025.html"/>
+      <file href="index.html"/>
+      <file href="module-router.js"/>
+      <file href="module-fixes.js"/>
+      <file href="modules.css"/>
+      <file href="styles.css"/>
+      <file href="learning.css"/>
+      <file href="practice.css"/>
+      <file href="modules/2025/tasks.js"/>
+      <file href="practice.js"/>
+      <file href="practice-numbers.js"/>
+      <file href="scorm.js"/>
+      <file href="app-2025.js"/>
+      <file href="resume-2025.js"/>
+      <file href="rewards.js"/>
+      <file href="attempt-lock.js"/>
+    </resource>
+  </resources>
+</manifest>
