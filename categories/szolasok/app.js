@@ -124,6 +124,19 @@
     saveAttempt();
   }
 
+  function renderLockedAttempt() {
+    state.screen = "locked";
+    updateStatus();
+    app.innerHTML = `
+      <section class="hero">
+        <div class="hero-inner">
+          <span class="badge">A próbálkozás lezárult</span>
+          <h2>Az eredményedet a Moodle már rögzítette.</h2>
+          <p class="lead">Új pontszámhoz lépj vissza a Moodle-ba, és indíts új próbálkozást.</p>
+        </div>
+      </section>`;
+  }
+
   function renderIntro() {
     state.screen = "intro";
     updateStatus();
@@ -348,6 +361,7 @@
   }
 
   if (window.SCORM) SCORM.init();
-  if (restoreAttempt()) renderStep();
+  if (window.SCORM?.isConnected?.() && window.SCORM?.isResultLocked?.()) renderLockedAttempt();
+  else if (restoreAttempt()) renderStep();
   else renderIntro();
 })();
