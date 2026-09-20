@@ -958,3 +958,11 @@ button.lotto-cell:hover:not(:disabled) {
     min-height: 0;
   }
 }
+
+
+.consonant-multi-hint {
+  margin: 14px 0 4px;
+  color: var(--muted);
+  font-size: .95rem;
+  font-weight: 700;
+}
