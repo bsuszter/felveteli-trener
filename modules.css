@@ -581,21 +581,26 @@ button.lotto-cell:hover:not(:disabled) {
   margin: 26px 0;
 }
 .saying-figure {
-  min-height: 112px;
+  position: relative;
+  min-width: 0;
   border: 2px solid #e3e7e4;
   border-radius: 18px;
   background: #fff;
   cursor: pointer;
-  display: grid;
-  grid-template-columns: 36px 1fr;
-  align-items: center;
-  gap: 8px;
-  padding: 14px;
+  display: block;
+  padding: 8px;
+  overflow: hidden;
   color: var(--ink);
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
 }
 .saying-figure:hover,
 .saying-expression:hover {
   border-color: var(--accent);
+}
+
+.saying-figure:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(79,127,121,.12);
 }
 .saying-figure.selected,
 .saying-expression.selected {
@@ -604,18 +609,36 @@ button.lotto-cell:hover:not(:disabled) {
   box-shadow: 0 8px 22px rgba(79,127,121,.12);
 }
 .saying-figure-letter {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  left: 14px;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: #f3f5f4;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(79,127,121,.16);
+  box-shadow: 0 4px 12px rgba(36,50,56,.12);
   font-weight: 900;
   color: var(--accent);
 }
-.saying-figure-symbol {
-  font-size: 2rem;
-  letter-spacing: .08em;
+
+.saying-figure-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f7f9f8;
+}
+
+.saying-figure-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .saying-expression-list {
   display: grid;
@@ -686,7 +709,16 @@ button.lotto-cell:hover:not(:disabled) {
 .saying-review-row small { margin-top: 4px; color: var(--muted); }
 .saying-review-row > span { font-weight: 800; }
 @media (max-width: 640px) {
-  .saying-figure-grid { grid-template-columns: repeat(2, 1fr); }
+  .saying-figure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .saying-figure { padding: 5px; border-radius: 14px; }
+  .saying-figure-media { border-radius: 10px; }
+  .saying-figure-letter {
+    top: 9px;
+    left: 9px;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+  }
   .saying-score-breakdown { grid-template-columns: 1fr; }
   .saying-review-row { grid-template-columns: 1fr; }
 }
