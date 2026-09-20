@@ -143,7 +143,7 @@
     app.innerHTML = `
       <section class="hero">
         <div class="hero-inner">
-          ${standaloneScorm ? "" : '<a class="module-return" href="index.html?category=szolasok">← Évválasztó</a>'}
+          ${standaloneScorm ? "" : '<a class="module-return" href="index.html?category=szolasok">← Szólások és közmondások</a>'}
           <span class="badge">Szólások és közmondások • 2026</span>
           <h2>Három lépésben gyakoroljuk a 2026-os feladatokat.</h2>
           <p class="lead">Először képi ábrázolásokhoz rendelsz jelentéseket, utána állandósult szókapcsolatokat párosítasz a jelentésükkel, végül a képekhez a pontos szólást vagy közmondást is kiválasztod.</p>
@@ -238,6 +238,7 @@
 
     app.innerHTML = `
       <section class="question sayings-question">
+        ${standaloneScorm ? "" : '<a class="module-return" href="index.html?category=szolasok">← Szólások és közmondások</a>'}
         <div class="question-head">
           <span>2026 • ${blockNumber}. feladatblokk</span>
           <span>${state.step + 1} / ${totalSteps}</span>
@@ -285,6 +286,7 @@
 
     app.innerHTML = `
       <section class="result">
+        ${standaloneScorm ? "" : '<a class="module-return" href="index.html?category=szolasok">← Szólások és közmondások</a>'}
         <span class="badge">Kész a 2026-os feladatsor</span>
         <h2>${total === DATA.maxScore ? "Hibátlan munka!" : "Nézzük az eredményt!"}</h2>
         <div class="result-score"><div><strong>${total}/${DATA.maxScore}</strong><span>pont</span></div></div>
@@ -348,6 +350,7 @@
 
     app.innerHTML = `
       <section class="review-screen">
+        ${standaloneScorm ? "" : '<a class="module-return" href="index.html?category=szolasok">← Szólások és közmondások</a>'}
         <div class="review-toolbar"><button class="nav-btn" id="backResult">← Eredmény</button><span>2026</span></div>
         <h2>Megoldások</h2>
         <h3>Képi szólások</h3>
