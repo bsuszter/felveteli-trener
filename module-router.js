@@ -3,18 +3,7 @@
   const categoryId = params.get("category");
   const moduleId = params.get("module");
 
-  const categories = {
-    helyesiras: {
-      title: "Helyesírás",
-      icon: "Á",
-      description: "Felvételi feladatok évek szerint, célzott magyarázatokkal és gyakorlóbankkal."
-    },
-    szolasok: {
-      title: "Szólások és közmondások",
-      icon: "„”",
-      description: "Jelentés, kiegészítés, felismerés és alkalmazás felvételi feladatokból."
-    }
-  };
+  const categories = window.FELVETELI_CATEGORIES || {};
 
   const modules = {
     "2026": {
@@ -141,25 +130,25 @@
       </section>`;
   }
 
-  function renderSzolasokLauncher() {
+  function renderGenericCategory(category) {
     hideProgress();
-    document.documentElement.dataset.category = "szolasok";
+    document.documentElement.dataset.category = category.id;
     document.documentElement.dataset.module = "";
-    document.title = "Felvételi tréner – Szólások és közmondások";
-    setHeader("Szólások és közmondások");
+    document.title = `Felvételi tréner – ${category.title}`;
+    setHeader(category.title);
 
     const app = document.getElementById("app");
     app.innerHTML = `
       <section class="module-launcher">
         <a class="category-back" href="index.html">← Témakörök</a>
         <div class="module-launcher-head">
-          <span class="badge">Új témakör</span>
-          <h2>Szólások és közmondások</h2>
-          <p class="lead">A kategória helye elkészült. Ide kerülnek majd az évenkénti felvételi feladatok és a saját gyakorlóbank.</p>
+          <span class="badge">Felvételi tréner</span>
+          <h2>${category.title}</h2>
+          <p class="lead">${category.description}</p>
         </div>
         <div class="category-empty-state">
-          <strong>A szerkezet kész.</strong>
-          <span>Az első feldolgozott év hozzáadásakor itt ugyanaz az évválasztó logika jelenik meg, mint a helyesírásnál.</span>
+          <strong>A kategória helye elkészült.</strong>
+          <span>${category.emptyMessage || "Az első modul hozzáadásakor itt jelenik meg a tartalom."}</span>
         </div>
       </section>`;
   }
@@ -176,10 +165,14 @@
 
   // Régi közvetlen linkek (pl. ?module=2022) továbbra is a helyesírási modulokra mutatnak.
   if (!moduleId) {
-    if (!categoryId) renderCategoryLauncher();
-    else if (categoryId === "helyesiras") renderHelyesirasLauncher();
-    else if (categoryId === "szolasok") renderSzolasokLauncher();
-    else renderCategoryLauncher();
+    if (!categoryId) {
+      renderCategoryLauncher();
+    } else {
+      const category = categories[categoryId];
+      if (!category) renderCategoryLauncher();
+      else if (category.routeType === "helyesiras") renderHelyesirasLauncher();
+      else renderGenericCategory(category);
+    }
     return;
   }
 
