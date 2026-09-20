@@ -178,6 +178,17 @@
       const category = categories[categoryId];
       if (!category) renderCategoryLauncher();
       else if (category.routeType === "helyesiras") renderHelyesirasLauncher();
+      else if (category.routeType === "direct") {
+        document.documentElement.dataset.category = category.id;
+        document.documentElement.dataset.module = "";
+        document.title = `Felvételi tréner – ${category.title}`;
+        setHeader(category.title);
+        hideProgress();
+        loadSequentially(category.scripts || []).catch(error => {
+          console.error(error);
+          document.getElementById("app").innerHTML = `<section class="hero"><div class="hero-inner"><h2>Betöltési hiba</h2><p class="lead">A témakör nem tölthető be.</p><a class="primary module-back-link" href="index.html">Vissza a témakörökhöz</a></div></section>`;
+        });
+      }
       else renderGenericCategory(category);
     }
     return;
