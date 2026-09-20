@@ -1,9 +1,11 @@
 {
   "id": "szolasok",
   "title": "Szólások és közmondások",
-  "status": "scaffold",
+  "status": "active",
   "route": "?category=szolasok",
-  "modules": [],
+  "modules": [
+    "2026"
+  ],
   "practice": false,
   "scormStrategy": "category-year"
 }
