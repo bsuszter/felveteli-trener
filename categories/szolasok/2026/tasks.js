@@ -5,12 +5,12 @@ window.SZOLASOK_2026 = {
     title: "Melyik képhez illik a jelentés?",
     instruction: "Válaszd ki azt a betűt, amelyik kép a megadott jelentéshez tartozó szólást vagy közmondást ábrázolja. Egy kép kimarad.",
     figures: [
-      { id: "A", symbol: "💣 → 🐦", label: "A" },
-      { id: "B", symbol: "👁️ 👑 👥", label: "B" },
-      { id: "C", symbol: "🐷 💭 🌰", label: "C" },
-      { id: "D", symbol: "👥 🍒 🥣", label: "D" },
-      { id: "E", symbol: "🫳 🪏 👤", label: "E" },
-      { id: "F", symbol: "🪲 → 🐘", label: "F" }
+      { id: "A", image: "categories/szolasok/2026/img/a-agyuval-lo-verebre.png", label: "A" },
+      { id: "B", image: "categories/szolasok/2026/img/b-vakok-kozott-felszemu-kiraly.png", label: "B" },
+      { id: "C", image: "categories/szolasok/2026/img/c-ehes-diszno-makkal-almodik.png", label: "C" },
+      { id: "D", image: "categories/szolasok/2026/img/d-egy-talbol-cseresznyeznek.png", label: "D" },
+      { id: "E", image: "categories/szolasok/2026/img/e-lapatra-tesz.png", label: "E" },
+      { id: "F", image: "categories/szolasok/2026/img/f-bolhabol-elefantot-csinal.png", label: "F" }
     ],
     items: [
       {
