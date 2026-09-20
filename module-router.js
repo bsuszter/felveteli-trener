@@ -137,6 +137,16 @@
     document.title = `Felvételi tréner – ${category.title}`;
     setHeader(category.title);
 
+    const entries = Object.entries(category.modules || {}).sort((a, b) => b[0] - a[0]);
+    const moduleList = entries.length
+      ? `<div class="module-grid">${entries.map(([id, item]) => `
+          <a class="module-card" href="?category=${category.id}&module=${id}">
+            <span class="module-year">${item.year}</span>
+            <span class="module-copy"><strong>${item.title}</strong><small>${item.subtitle || ""}</small></span>
+            <span class="module-arrow" aria-hidden="true">→</span>
+          </a>`).join("")}</div>`
+      : `<div class="category-empty-state"><strong>A kategória helye elkészült.</strong><span>${category.emptyMessage || "Az első modul hozzáadásakor itt jelenik meg a tartalom."}</span></div>`;
+
     const app = document.getElementById("app");
     app.innerHTML = `
       <section class="module-launcher">
@@ -146,10 +156,7 @@
           <h2>${category.title}</h2>
           <p class="lead">${category.description}</p>
         </div>
-        <div class="category-empty-state">
-          <strong>A kategória helye elkészült.</strong>
-          <span>${category.emptyMessage || "Az első modul hozzáadásakor itt jelenik meg a tartalom."}</span>
-        </div>
+        ${moduleList}
       </section>`;
   }
 
@@ -176,6 +183,35 @@
     return;
   }
 
+  // Kategóriához kötött új modulok.
+  if (categoryId && categoryId !== "helyesiras") {
+    const category = categories[categoryId];
+    const selected = category?.modules?.[moduleId];
+    if (!category || !selected) {
+      if (category) renderGenericCategory(category);
+      else renderCategoryLauncher();
+      return;
+    }
+
+    document.documentElement.dataset.category = categoryId;
+    document.documentElement.dataset.module = moduleId;
+    document.title = `Felvételi tréner – ${category.title} ${selected.year}`;
+    setHeader(`${category.title} ${selected.year}`);
+
+    const scoreboard = document.querySelector(".scoreboard");
+    const progressTrack = document.querySelector(".progress-track");
+    if (scoreboard) scoreboard.hidden = false;
+    if (progressTrack) progressTrack.hidden = false;
+    setScoreboard(selected.maxScore);
+
+    loadSequentially(selected.scripts).catch(error => {
+      console.error(error);
+      document.getElementById("app").innerHTML = `<section class="hero"><div class="hero-inner"><h2>Betöltési hiba</h2><p class="lead">A kiválasztott modul nem tölthető be.</p><a class="primary module-back-link" href="index.html?category=${categoryId}">Vissza a témakörhöz</a></div></section>`;
+    });
+    return;
+  }
+
+  // A régi, kategória nélküli közvetlen linkek helyesírásként működnek tovább.
   document.documentElement.dataset.category = "helyesiras";
 
   if (moduleId === "practice") {
