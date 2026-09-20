@@ -1,6 +1,7 @@
 (() => {
   const DATA = window.SZOLASOK_2026;
   const app = document.getElementById("app");
+  const standaloneScorm = Boolean(window.SZOLASOK_SCORM_STANDALONE);
   const pictureItems = DATA.pictureTask.items;
   const meaningItems = DATA.meaningTask.items;
   const recallItems = DATA.recallTask.items;
@@ -58,6 +59,58 @@
       state.recallAnswers.filter(Boolean).length;
   }
 
+  function snapshotAttempt() {
+    return {
+      version: 1,
+      module: "szolasok-2026",
+      screen: state.screen,
+      step: state.step,
+      pictureAnswers: [...state.pictureAnswers],
+      meaningAnswers: [...state.meaningAnswers],
+      recallAnswers: [...state.recallAnswers],
+      recallOrder: [...state.recallOrder],
+      recallOptionIds: state.recallOptions.map(item => item.id)
+    };
+  }
+
+  function saveAttempt() {
+    if (!window.SCORM?.isConnected?.() || window.SCORM?.isResultLocked?.() || state.screen === "result") return;
+    SCORM.saveAttempt?.(snapshotAttempt());
+  }
+
+  function restoreAttempt() {
+    if (!window.SCORM?.isConnected?.() || window.SCORM?.isResultLocked?.()) return false;
+    const saved = SCORM.loadAttempt?.();
+    if (!saved || saved.module !== "szolasok-2026") return false;
+
+    const copyAnswers = (source, length) => {
+      const result = Array(length).fill(null);
+      if (Array.isArray(source)) source.slice(0, length).forEach((value, index) => { result[index] = value ?? null; });
+      return result;
+    };
+
+    state.pictureAnswers = copyAnswers(saved.pictureAnswers, pictureItems.length);
+    state.meaningAnswers = copyAnswers(saved.meaningAnswers, meaningItems.length);
+    state.recallAnswers = copyAnswers(saved.recallAnswers, recallItems.length);
+
+    if (Array.isArray(saved.recallOrder) && saved.recallOrder.length === recallItems.length) {
+      state.recallOrder = saved.recallOrder.map(Number);
+    }
+
+    if (Array.isArray(saved.recallOptionIds)) {
+      const restored = saved.recallOptionIds
+        .map(id => DATA.recallTask.options.find(item => item.id === id))
+        .filter(Boolean);
+      if (restored.length === DATA.recallTask.options.length) state.recallOptions = restored;
+    }
+
+    state.step = Number.isInteger(saved.step)
+      ? Math.max(0, Math.min(saved.step, totalSteps - 1))
+      : 0;
+
+    return saved.screen === "question" || answeredCount() > 0;
+  }
+
   function updateStatus() {
     const progressText = document.getElementById("progressText");
     const scoreText = document.getElementById("scoreText");
@@ -68,6 +121,7 @@
     if (totalText) totalText.textContent = String(DATA.maxScore);
     if (bar) bar.style.width = `${Math.round(answeredCount() / totalSteps * 100)}%`;
     if (window.SCORM) SCORM.setProgress(score(), DATA.maxScore);
+    saveAttempt();
   }
 
   function renderIntro() {
@@ -76,7 +130,7 @@
     app.innerHTML = `
       <section class="hero">
         <div class="hero-inner">
-          <a class="module-return" href="index.html?category=szolasok">← Évválasztó</a>
+          ${standaloneScorm ? "" : '<a class="module-return" href="index.html?category=szolasok">← Évválasztó</a>'}
           <span class="badge">Szólások és közmondások • 2026</span>
           <h2>Három lépésben gyakoroljuk a 2026-os feladatokat.</h2>
           <p class="lead">Először képi ábrázolásokhoz rendelsz jelentéseket, utána állandósult szókapcsolatokat párosítasz a jelentésükkel, végül a képekhez a pontos szólást vagy közmondást is kiválasztod.</p>
@@ -232,7 +286,7 @@
         <div class="result-actions">
           <button class="secondary" id="reviewBtn">Megoldások áttekintése</button>
           <button class="secondary" id="restartBtn">Újrakezdem</button>
-          <a class="secondary module-back-link" href="index.html?category=szolasok">Másik év választása</a>
+          ${standaloneScorm ? "" : '<a class="secondary module-back-link" href="index.html?category=szolasok">Másik év választása</a>'}
         </div>
       </section>`;
 
@@ -294,5 +348,6 @@
   }
 
   if (window.SCORM) SCORM.init();
-  renderIntro();
+  if (restoreAttempt()) renderStep();
+  else renderIntro();
 })();
