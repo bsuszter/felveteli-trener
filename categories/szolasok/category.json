@@ -1,0 +1,9 @@
+{
+  "id": "szolasok",
+  "title": "Szólások és közmondások",
+  "status": "scaffold",
+  "route": "?category=szolasok",
+  "modules": [],
+  "practice": false,
+  "scormStrategy": "category-year"
+}
