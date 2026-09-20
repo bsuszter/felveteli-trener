@@ -23,5 +23,14 @@ window.FELVETELI_CATEGORIES = {
         scripts: ["scorm.js", "categories/szolasok/2026/tasks.js", "categories/szolasok/app.js"]
       }
     }
+  },
+  massalhangzotorvenyek: {
+    id: "massalhangzotorvenyek",
+    title: "Mássalhangzótörvények",
+    icon: "MG",
+    description: "Felismerés, összehasonlítás és szövegbeli példakeresés korábbi felvételi feladatokból.",
+    status: "active",
+    routeType: "direct",
+    scripts: ["categories/massalhangzotorvenyek/tasks.js", "categories/massalhangzotorvenyek/app.js"]
   }
 };
