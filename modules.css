@@ -764,3 +764,197 @@ button.lotto-cell:hover:not(:disabled) {
   text-align: center;
   line-height: 1.35;
 }
+
+
+/* Mássalhangzótörvények */
+.consonant-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.consonant-mode-card,
+.consonant-law-card {
+  border: 2px solid #e2e8e5;
+  background: #fff;
+  color: var(--ink);
+  border-radius: 20px;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+
+.consonant-mode-card {
+  min-height: 180px;
+  padding: 24px;
+}
+
+.consonant-mode-card:hover,
+.consonant-law-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(79,127,121,.12);
+}
+
+.consonant-mode-card.mixed {
+  background: linear-gradient(135deg, #fffdf8, #fff8e8);
+  border-color: rgba(200,148,67,.35);
+}
+
+.consonant-mode-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  border-radius: 15px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.55rem;
+  font-weight: 900;
+}
+
+.consonant-mode-card strong,
+.consonant-mode-card small,
+.consonant-law-card strong,
+.consonant-law-card small {
+  display: block;
+}
+
+.consonant-mode-card strong {
+  font-size: 1.22rem;
+}
+
+.consonant-mode-card small,
+.consonant-law-card small {
+  margin-top: 7px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.consonant-law-panel {
+  margin-top: 30px;
+  padding-top: 8px;
+}
+
+.consonant-law-panel h3 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.consonant-law-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.consonant-law-card {
+  padding: 18px;
+}
+
+.consonant-source-note {
+  margin: 28px auto 0;
+  max-width: 680px;
+  color: var(--muted);
+  text-align: center;
+  font-size: .94rem;
+  line-height: 1.5;
+}
+
+.consonant-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0 10px;
+}
+
+.consonant-meta small {
+  color: var(--muted);
+}
+
+.consonant-context {
+  margin: 20px 0;
+  padding: 18px 20px;
+  border-left: 5px solid var(--accent);
+  border-radius: 12px;
+  background: #f7f9f8;
+  line-height: 1.6;
+  font-size: 1.02rem;
+}
+
+.consonant-options {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.consonant-option {
+  width: 100%;
+  padding: 15px 17px;
+  border: 2px solid #e3e7e4;
+  border-radius: 15px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 750;
+  text-align: left;
+  cursor: pointer;
+}
+
+.consonant-option:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.consonant-option.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.consonant-option.correct {
+  border-color: #76a99d;
+  background: var(--accent-soft);
+}
+
+.consonant-option.wrong {
+  border-color: #d58d86;
+  background: var(--danger-soft);
+}
+
+.consonant-option:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.consonant-feedback {
+  display: grid;
+  gap: 4px;
+  margin: 18px 0;
+  padding: 16px 18px;
+  border-radius: 15px;
+}
+
+.consonant-feedback.correct {
+  background: var(--accent-soft);
+}
+
+.consonant-feedback.wrong {
+  background: var(--danger-soft);
+}
+
+.consonant-feedback span,
+.consonant-feedback small {
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .consonant-mode-grid,
+  .consonant-law-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .consonant-mode-card {
+    min-height: 0;
+  }
+}
