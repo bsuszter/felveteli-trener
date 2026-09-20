@@ -30,6 +30,13 @@
       title: "Helyesírás gyakorlás 2023",
       subtitle: "2023. januári helyesírási lottó",
       scripts: ["modules/2023/tasks.js", "practice.js", "practice-numbers.js", "scorm.js", "app-2023.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
+    },
+    "2022": {
+      year: 2022,
+      maxScore: 10,
+      title: "Helyesírás gyakorlás 2022",
+      subtitle: "2022. januári felvételi feladatok",
+      scripts: ["modules/2022/tasks.js", "practice.js", "practice-numbers.js", "scorm.js", "app-2022.js", "resume-2022.js", "rewards.js", "attempt-lock.js", "module-fixes.js"]
     }
   };
 
