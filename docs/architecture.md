@@ -1,94 +1,133 @@
-# Felvételi tréner – moduláris szerkezet
+# Felvételi tréner – architektúra
 
-## Alapelv
+## Cél
 
-A repó egyetlen közös helyesírási tanulómotort tartalmaz, amelyből több, egymástól független Moodle/SCORM modul készülhet.
+A projekt két, egymást kiegészítő felhasználási módot támogat:
 
-A Moodle-ban az egyes évek külön SCORM-tevékenységek maradnak, hogy külön próbálkozás- és pontszámelőzményük legyen. A fejlesztés viszont közös repóban történik, így a felületet, a gyakorlóbankot, a jutalmazást és a SCORM-kezelést nem kell évenként lemásolni és külön karbantartani.
+1. **GitHub / GitHub Pages:** a teljes Felvételi tréner egy helyen, Moodle-tól függetlenül.
+2. **Moodle / SCORM 1.2:** témakörönként és évenként külön, kis tanulási egységek.
 
-## Jelenlegi stabil build
+A GitHub tehát az elsődleges forrás és hosszú távú gyűjtemény; a SCORM ennek célzott, csomagolt kiadása.
 
-A repó gyökerében lévő fájlok jelenleg a működő **Helyesírás gyakorlás 2026** SCORM-build forrásai és futtatási fájljai:
-
-- `index.html`
-- `app.js`
-- `tasks.js`
-- `practice.js`
-- `rewards.js`
-- `scorm.js`
-- `styles.css`
-- `practice.css`
-- `learning.css`
-- `imsmanifest.xml`
-- `magyarazat01.png` … `magyarazat06.png`
-
-Ezeket addig nem mozgatjuk el, amíg az új modulrendszerből ugyanaz a csomag ellenőrzötten elő nem állítható. Így a Moodle-ban már kipróbált 2026-os változat végig biztonságban marad.
-
-## Modulok
-
-Az évhez kötött adatok a `modules/` könyvtárban kapnak helyet.
+## Navigációs hierarchia
 
 ```text
-modules/
-├── 2026/
-│   └── module.json
-└── 2025/
-    ├── module.json
-    └── tasks.js       # a következő fejlesztési lépésben
+Felvételi tréner
+│
+├── Helyesírás
+│   ├── 2026
+│   ├── 2025
+│   ├── 2024
+│   ├── 2023
+│   ├── 2022
+│   └── Gyakorlóbank
+│
+└── Szólások és közmondások
+    ├── évenkénti felvételi modulok
+    └── Gyakorlóbank
 ```
 
-A `module.json` a modul azonosítóit, címét, maximális pontszámát, forrását és buildbeállításait tartalmazza.
+A későbbi témakörök ugyanezen a szinten vehetők fel.
 
-### 2026
+## Könyvtárstratégia
 
-A 2026-os modul `stable` állapotú. A feladatai egyelőre a gyökér `tasks.js` fájljában maradnak, mert ez a jelenleg Moodle-ban tesztelt változat.
+Az új témakörök kanonikus helye:
 
-### 2025
+```text
+categories/
+├── helyesiras/
+│   └── category.json
+└── szolasok/
+    └── category.json
+```
 
-A 2025-ös modul `draft` állapotú. A forrás a korábban feltöltött `helyesírás korábbi évek.pdf` 3. oldala. Először a feladatokat és a javítókulcsot dolgozzuk fel, utána készül el a `modules/2025/tasks.js`.
+A már működő helyesírási évmodulok fájljait egyelőre nem mozgatjuk el. Ennek oka a meglévő SCORM-csomagok és manifestek útvonal-kompatibilitása.
 
-## Közös elemek
+A következő fejlesztési szakaszban az új tartalmak már témakör-névtérben készülnek, és a SCORM-build csak a szükséges fájlokat gyűjti össze egy ideiglenes staging könyvtárba.
 
-Az alábbi funkciók minden év moduljában közösek maradnak:
+## URL-logika
 
-- kártyás felület és navigáció;
+A webes változat új címei:
+
+```text
+?category=helyesiras
+?category=helyesiras&module=2022
+?category=szolasok
+```
+
+A régi URL-ek kompatibilitási okból tovább élnek:
+
+```text
+?module=2022
+?module=practice
+```
+
+Ezek automatikusan a Helyesírás kategóriát jelentik.
+
+## Közös motor
+
+Közösen használható elemek:
+
+- alapfelület és navigáció;
 - pontozás és haladás;
-- feladatonkénti áttekintés;
-- magyarázókártyák;
-- témacímkék és személyre szabott gyakorlás;
-- közös gyakorlóbank;
-- aranytallér-rendszer;
 - SCORM 1.2 kommunikáció;
-- félbehagyott próbálkozás részpontszámának mentése;
-- lezárt Moodle-próbálkozás pontszámának zárolása.
+- folytatható próbálkozás;
+- próbálkozászárolás;
+- Aranytallér Protocol 1.0;
+- gyakorlófeladat-motor;
+- közös vizuális komponensek.
+
+A témakör-specifikus elemek elsősorban:
+
+- feladatadatok;
+- feladattípusok;
+- magyarázatok;
+- gyakorlóbank-témák;
+- évmodulok.
 
 ## Moodle-struktúra
 
-Javasolt megjelenés:
+A Moodle-ban minden év külön SCORM marad:
 
 ```text
-Felvételi feladatok témák szerint
-├── Helyesírás gyakorlás 2026   [külön SCORM]
-├── Helyesírás gyakorlás 2025   [külön SCORM]
-├── Helyesírás gyakorlás 2024   [később]
-└── ...
+Felvételi tréner
+├── Helyesírás
+│   ├── 2022 [SCORM]
+│   ├── 2023 [SCORM]
+│   └── ...
+└── Szólások és közmondások
+    ├── 2022 [SCORM]
+    ├── 2023 [SCORM]
+    └── ...
 ```
 
-Ez azért fontos, mert az egyes évek eredményei és próbálkozásai így nem írják felül egymást a Moodle-ban.
+Ez biztosítja, hogy az egyes modulok eredményei, próbálkozásai és folytatható állapotai ne írják felül egymást.
 
-## Fejlesztési sorrend
+## SCORM-build elv
 
-1. A 2026-os gyökérbuild változatlanul működőképes marad.
-2. A 2025-ös PDF feladatainak pedagógiai feldolgozása.
-3. A 2025-ös modul adatfájljának elkészítése.
-4. Az új feladattípusokhoz szükséges motorbővítés.
-5. A közös gyakorlóbank bővítése az új témákkal.
-6. Külön 2025-ös SCORM-build és Moodle-teszt.
-7. Csak ezután érdemes a gyökérben maradt 2026-os adatfájlt is véglegesen a modul könyvtárába költöztetni.
+A repó teljes tartalmát nem tesszük bele minden ZIP-be. Egy adott SCORM csak az adott modulhoz szükséges állományokat tartalmazza, az `imsmanifest.xml` pedig mindig a ZIP gyökerében van.
 
-## Munkamegosztás
+Példa:
 
-- **Pedagógiai kontroll:** feladatok, megoldások, magyarázatok, példák, témabesorolás ellenőrzése.
-- **Technikai megvalósítás:** repószerkezet, JavaScript/CSS, adatmodell, SCORM, build és Moodle-kompatibilitás.
+```text
+Helyesiras_gyakorlas_2022_SCORM12.zip
+├── imsmanifest.xml
+├── index.html
+├── ...
+└── modules/
+    └── 2022/
+        └── tasks.js
+```
 
-A cél, hogy az új évek hozzáadása már ne új alkalmazás fejlesztését jelentse, hanem új moduladatok és szükség esetén új feladattípusok hozzáadását.
+A jövőbeli Szólások és közmondások SCORM-ok ugyanezt az elvet követik saját forrásazonosítóval és saját feladatállománnyal.
+
+## Következő fejlesztési lépés
+
+A következő új tartalom már a `Szólások és közmondások` kategóriában készül. Az első év feldolgozásakor meghatározzuk a szükséges közös feladattípusokat, például:
+
+- jelentés kiválasztása;
+- hiányzó elem pótlása;
+- párosítás;
+- szólás vagy közmondás felismerése;
+- helyzethez illő kifejezés kiválasztása;
+- hibás alak javítása.
