@@ -163,6 +163,7 @@
         </div>
         <h2>${q.prompt}</h2>
         ${q.context ? `<div class="consonant-context">${q.context}</div>` : ""}
+        ${q.answers.length > 1 ? `<p class="consonant-multi-hint">Több helyes megoldás is elfogadható; elég egyet megjelölnöd.</p>` : ""}
         <div class="consonant-options">
           ${q.options.map(option => optionHtml(q, option, selected, checked)).join("")}
         </div>
