@@ -722,3 +722,35 @@ button.lotto-cell:hover:not(:disabled) {
   .saying-score-breakdown { grid-template-columns: 1fr; }
   .saying-review-row { grid-template-columns: 1fr; }
 }
+
+
+/* Szólások: 2026 rögzítő kör */
+.saying-recall-figure {
+  position: relative;
+  width: min(520px, 100%);
+  margin: 24px auto 18px;
+  padding: 8px;
+  border: 2px solid #e3e7e4;
+  border-radius: 20px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(35,56,52,.08);
+}
+
+.saying-recall-figure .saying-figure-media {
+  aspect-ratio: 4 / 3;
+}
+
+.saying-score-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: -10px auto 24px;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.saying-score-details strong {
+  color: var(--ink);
+}
