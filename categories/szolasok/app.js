@@ -63,9 +63,11 @@
 
   function figuresHtml(selected) {
     return `<div class="saying-figure-grid">${DATA.pictureTask.figures.map(fig => `
-      <button class="saying-figure ${selected === fig.id ? "selected" : ""}" data-value="${fig.id}">
-        <span class="saying-figure-letter">${fig.label}</span>
-        <span class="saying-figure-symbol" aria-hidden="true">${fig.symbol}</span>
+      <button class="saying-figure ${selected === fig.id ? "selected" : ""}" data-value="${fig.id}" aria-label="${fig.label} jelű kép">
+        <span class="saying-figure-letter" aria-hidden="true">${fig.label}</span>
+        <span class="saying-figure-media">
+          <img class="saying-figure-image" src="${fig.image}" alt="" loading="eager" decoding="async">
+        </span>
       </button>`).join("")}</div>`;
   }
 
