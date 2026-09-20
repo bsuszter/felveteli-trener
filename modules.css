@@ -754,3 +754,13 @@ button.lotto-cell:hover:not(:disabled) {
 .saying-score-details strong {
   color: var(--ink);
 }
+
+
+.saying-recall-options .saying-recall-option {
+  grid-template-columns: 1fr;
+}
+
+.saying-recall-option strong {
+  text-align: center;
+  line-height: 1.35;
+}
