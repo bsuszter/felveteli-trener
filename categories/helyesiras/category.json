@@ -1,0 +1,15 @@
+{
+  "id": "helyesiras",
+  "title": "Helyesírás",
+  "status": "stable",
+  "route": "?category=helyesiras",
+  "modules": [
+    "2026",
+    "2025",
+    "2024",
+    "2023",
+    "2022"
+  ],
+  "practice": true,
+  "scormStrategy": "category-year"
+}
