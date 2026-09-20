@@ -12,8 +12,16 @@ window.FELVETELI_CATEGORIES = {
     title: "Szólások és közmondások",
     icon: "„”",
     description: "Jelentés, kiegészítés, felismerés és alkalmazás felvételi feladatokból.",
-    status: "scaffold",
+    status: "active",
     routeType: "generic",
-    emptyMessage: "Az első feldolgozott év hozzáadásakor itt jelennek meg az évenkénti felvételi modulok és a saját gyakorlóbank."
+    modules: {
+      "2026": {
+        year: 2026,
+        maxScore: 8,
+        title: "Szólások és közmondások 2026",
+        subtitle: "2 feladatblokk • 9 döntés • 8 pont",
+        scripts: ["scorm.js", "categories/szolasok/2026/tasks.js", "categories/szolasok/app.js"]
+      }
+    }
   }
 };
