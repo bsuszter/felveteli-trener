@@ -6,12 +6,32 @@
   const recallItems = DATA.recallTask.items;
   const totalSteps = pictureItems.length + meaningItems.length + recallItems.length;
 
+  function shuffledIndexes(length) {
+    const values = Array.from({ length }, (_, index) => index);
+    for (let i = values.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [values[i], values[j]] = [values[j], values[i]];
+    }
+    return values;
+  }
+
+  function shuffledValues(items) {
+    const values = items.slice();
+    for (let i = values.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [values[i], values[j]] = [values[j], values[i]];
+    }
+    return values;
+  }
+
   const state = {
     screen: "intro",
     step: 0,
     pictureAnswers: Array(pictureItems.length).fill(null),
     meaningAnswers: Array(meaningItems.length).fill(null),
-    recallAnswers: Array(recallItems.length).fill(null)
+    recallAnswers: Array(recallItems.length).fill(null),
+    recallOrder: shuffledIndexes(recallItems.length),
+    recallOptions: shuffledValues(DATA.recallTask.options)
   };
 
   function pictureCorrectCount() {
@@ -88,9 +108,9 @@
   }
 
   function recallOptionsHtml(selected) {
-    return `<div class="saying-expression-list">${DATA.recallTask.options.map(exp => `
-      <button class="saying-expression ${selected === exp.id ? "selected" : ""}" data-value="${exp.id}">
-        <span>${exp.id}</span><strong>${exp.text}</strong>
+    return `<div class="saying-expression-list saying-recall-options">${state.recallOptions.map(exp => `
+      <button class="saying-expression saying-recall-option ${selected === exp.id ? "selected" : ""}" data-value="${exp.id}">
+        <strong>${exp.text}</strong>
       </button>`).join("")}</div>`;
   }
 
@@ -139,7 +159,8 @@
       heading = task.prompt;
       contentHtml = expressionsHtml(answer);
     } else {
-      localIndex = state.step - meaningEnd;
+      const recallPosition = state.step - meaningEnd;
+      localIndex = state.recallOrder[recallPosition];
       task = recallItems[localIndex];
       answer = state.recallAnswers[localIndex];
       block = DATA.recallTask;
@@ -221,6 +242,8 @@
       state.pictureAnswers.fill(null);
       state.meaningAnswers.fill(null);
       state.recallAnswers.fill(null);
+      state.recallOrder = shuffledIndexes(recallItems.length);
+      state.recallOptions = shuffledValues(DATA.recallTask.options);
       renderIntro();
     });
   }
