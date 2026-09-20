@@ -2,47 +2,69 @@
 
 Interaktív, SCORM-kompatibilis tanulóalkalmazás magyar középiskolai felvételi feladatok feldolgozásához.
 
-## Jelenlegi állapot
+## Alapkoncepció
 
-A stabil, Moodle-ban használható első modul:
+A GitHub-repó a teljes, Moodle-tól független **Felvételi tréner** forrása és webes változata. A Moodle-ban ezzel szemben a tananyag kisebb, önálló SCORM 1.2 egységekre bontva jelenik meg.
 
-**Helyesírás gyakorlás 2026**
-
-Fő funkciók:
-
-- 12 eredeti 2026. januári helyesírási feladat;
-- folyamatos haladás- és pontkijelzés;
-- eredmény és feladatonkénti áttekintés;
-- részletes tanulókártyák és vizuális magyarázatok;
-- 9 témás, 45 feladatos saját gyakorlóbank;
-- személyre szabott gyakorlási útvonal;
-- aranytallér-jutalmazás;
-- SCORM 1.2 integráció;
-- félbehagyott próbálkozás részpontszámának mentése;
-- lezárt Moodle-próbálkozás pontszámának védelme.
-
-## Többéves modulrendszer
-
-A projektet nem külön repókra bontjuk. Egy közös motor szolgálja ki az évenként külön Moodle/SCORM tevékenységként megjelenő helyesírási modulokat.
+A webes felület témakörökből indul:
 
 ```text
-modules/
-├── 2026/   # stabil modul metaadatai
-└── 2025/   # következő fejlesztés alatt álló modul
+Felvételi tréner
+├── Helyesírás
+│   ├── 2026
+│   ├── 2025
+│   ├── 2024
+│   ├── 2023
+│   ├── 2022
+│   └── Gyakorlóbank
+└── Szólások és közmondások
+    ├── évenkénti modulok
+    └── Gyakorlóbank
 ```
 
-A repó gyökere jelenleg szándékosan a működő 2026-os SCORM-build fájljait tartalmazza. Ezeket addig nem mozgatjuk el, amíg a moduláris buildfolyamatból ugyanaz a csomag ellenőrzötten elő nem állítható.
+A Helyesírás jelenleg működő kategória. A Szólások és közmondások kategória szerkezeti helye elkészült, tartalma fokozatosan kerül bele.
+
+## Moodle-logika
+
+A Moodle-ban nem egyetlen nagy SCORM készül. Minden témakör és év külön csomag:
+
+```text
+Helyesírás – 2022
+Helyesírás – 2023
+...
+Szólások és közmondások – 2022
+Szólások és közmondások – 2023
+...
+```
+
+Így minden egységnek saját próbálkozása, pontszáma és folytatható állapota lehet.
+
+## Kompatibilitás
+
+A korábbi közvetlen linkek továbbra is működnek, például:
+
+```text
+?module=2022
+```
+
+Az új webes navigáció ugyanennek a teljesebb alakját használja:
+
+```text
+?category=helyesiras&module=2022
+```
+
+## Könyvtárszerkezet
+
+A már működő helyesírási SCORM-források egyelőre kompatibilitási okból a jelenlegi helyükön maradnak. Az új témakörök a `categories/` könyvtárban kapnak saját névteret.
 
 A részletes architektúra: `docs/architecture.md`.
 
-## Következő modul – 2025
-
-A 2025. januári feladatok forrása a korábban feldolgozásra átadott `helyesírás korábbi évek.pdf` 3. oldala. A következő lépés a feladatok, javítókulcsok és témacímkék pontos feldolgozása, majd a `modules/2025/tasks.js` elkészítése.
-
 ## Futtatás
 
-A jelenlegi 2026-os változat nem igényel telepítést vagy webszervert. Az `index.html` közvetlenül megnyitható böngészőben, illetve a gyökérfájlok SCORM 1.2 ZIP-ként csomagolhatók.
+A GitHub Pages változat:
 
-## Forrás és felhasználás
+```text
+https://bsuszter.github.io/felveteli-trener/
+```
 
-Az eredeti diagnosztikai feladatok a központi írásbeli felvételi feladatsoraiból származnak. A magyarázatok, vizuális tanulási elemek és a kiegészítő gyakorlóbank saját fejlesztésű oktatási tartalmak. A projekt jelenleg zárt Moodle-környezetben történő oktatási használatra készül.
+A böngészős változat SCORM API nélkül is használható tesztelésre. A Moodle-specifikus mentést, próbálkozászárolást és pontozást mindig a tényleges SCORM-csomagban kell ellenőrizni.
