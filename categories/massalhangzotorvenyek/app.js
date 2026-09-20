@@ -1,6 +1,7 @@
 (() => {
   const DATA = window.MASSALHANGZO_TASKS;
   const app = document.getElementById("app");
+  const standaloneScorm = Boolean(window.MASSALHANGZO_SCORM_STANDALONE);
   const lawMap = Object.fromEntries(DATA.laws.map(item => [item.id, item]));
 
   const state = {
@@ -19,6 +20,57 @@
       [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
+  }
+
+  function snapshotAttempt() {
+    return {
+      version: 1,
+      module: "massalhangzotorvenyek",
+      mode: state.mode,
+      law: state.law,
+      questionIds: state.questions.map(q => q.id),
+      index: state.index,
+      answers: [...state.answers],
+      checked: [...state.checked]
+    };
+  }
+
+  function saveAttempt() {
+    if (!window.SCORM?.isConnected?.() || window.SCORM?.isResultLocked?.() || !state.mode) return;
+    SCORM.saveAttempt?.(snapshotAttempt());
+  }
+
+  function restoreAttempt() {
+    if (!window.SCORM?.isConnected?.() || window.SCORM?.isResultLocked?.()) return false;
+    const saved = SCORM.loadAttempt?.();
+    if (!saved || saved.module !== "massalhangzotorvenyek" || !Array.isArray(saved.questionIds)) return false;
+
+    const restoredQuestions = saved.questionIds
+      .map(id => DATA.questions.find(q => q.id === id))
+      .filter(Boolean);
+    if (!restoredQuestions.length || restoredQuestions.length !== saved.questionIds.length) return false;
+
+    state.mode = saved.mode === "law" ? "law" : "mixed";
+    state.law = saved.law || null;
+    state.questions = restoredQuestions;
+    state.index = Number.isInteger(saved.index)
+      ? Math.max(0, Math.min(saved.index, restoredQuestions.length - 1))
+      : 0;
+
+    state.answers = Array(restoredQuestions.length).fill(null);
+    if (Array.isArray(saved.answers)) {
+      saved.answers.slice(0, restoredQuestions.length).forEach((value, i) => {
+        state.answers[i] = value ?? null;
+      });
+    }
+
+    state.checked = Array(restoredQuestions.length).fill(false);
+    if (Array.isArray(saved.checked)) {
+      saved.checked.slice(0, restoredQuestions.length).forEach((value, i) => {
+        state.checked[i] = Boolean(value);
+      });
+    }
+    return true;
   }
 
   function setChrome(show, total = 0) {
@@ -53,6 +105,8 @@
     if (scoreText) scoreText.textContent = `${score()} / ${total}`;
     if (totalText) totalText.textContent = String(total);
     if (bar) bar.style.width = total ? `${Math.round(answered / total * 100)}%` : "0%";
+    if (window.SCORM && state.mode) SCORM.setProgress(score(), total);
+    saveAttempt();
   }
 
   function renderHome() {
@@ -65,7 +119,7 @@
 
     app.innerHTML = `
       <section class="module-launcher consonant-launcher">
-        <a class="category-back" href="index.html">← Témakörök</a>
+        ${standaloneScorm ? "" : '<a class="category-back" href="index.html">← Témakörök</a>'}
         <div class="module-launcher-head">
           <span class="badge">Felvételi tréner</span>
           <h2>Mássalhangzótörvények</h2>
@@ -188,7 +242,10 @@
       });
     });
 
-    document.getElementById("homeBtn").addEventListener("click", renderHome);
+    document.getElementById("homeBtn").addEventListener("click", () => {
+      if (standaloneScorm && window.SCORM?.isConnected?.()) saveAttempt();
+      renderHome();
+    });
     document.getElementById("actionBtn").addEventListener("click", () => {
       if (!state.answers[state.index]) return;
       if (!state.checked[state.index]) {
@@ -208,6 +265,7 @@
     updateChrome();
     const total = state.questions.length;
     const points = score();
+    if (window.SCORM) SCORM.setResult(points, total);
     app.innerHTML = `
       <section class="result">
         <span class="badge">Mássalhangzótörvények</span>
@@ -217,17 +275,39 @@
           ? "10 véletlen felvételi részfeladatból álló vegyes kör."
           : `${lawMap[state.law]?.title || ""} – ${total} feladat.`}</p>
         <div class="result-actions">
-          <button class="secondary" id="againBtn">Új kör</button>
-          <button class="secondary" id="homeBtn">Másik gyakorlás</button>
+          ${standaloneScorm ? "" : '<button class="secondary" id="againBtn">Új kör</button><button class="secondary" id="homeBtn">Másik gyakorlás</button>'}
         </div>
+        ${standaloneScorm ? '<div class="scorm-attempt-notice"><strong>Az eredményedet rögzítettük.</strong><span>Új hivatalos eredményhez lépj vissza a Moodle-ba, és indíts új próbálkozást.</span></div>' : ""}
       </section>`;
 
-    document.getElementById("againBtn").addEventListener("click", () => {
-      if (state.mode === "mixed") startMixed();
-      else startLaw(state.law);
-    });
-    document.getElementById("homeBtn").addEventListener("click", renderHome);
+    if (!standaloneScorm) {
+      document.getElementById("againBtn").addEventListener("click", () => {
+        if (state.mode === "mixed") startMixed();
+        else startLaw(state.law);
+      });
+      document.getElementById("homeBtn").addEventListener("click", renderHome);
+    }
   }
 
-  renderHome();
+  function renderLockedAttempt() {
+    setChrome(false);
+    app.innerHTML = `
+      <section class="hero">
+        <div class="hero-inner">
+          <span class="badge">A próbálkozás lezárult</span>
+          <h2>Az eredményedet a Moodle már rögzítette.</h2>
+          <p class="lead">Új hivatalos eredményhez lépj vissza a Moodle-ba, és indíts új próbálkozást.</p>
+        </div>
+      </section>`;
+  }
+
+  if (window.SCORM) SCORM.init();
+  if (window.SCORM?.isConnected?.() && window.SCORM?.isResultLocked?.()) {
+    renderLockedAttempt();
+  } else if (restoreAttempt()) {
+    setChrome(true, state.questions.length);
+    renderQuestion();
+  } else {
+    renderHome();
+  }
 })();
