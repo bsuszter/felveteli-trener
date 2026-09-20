@@ -568,3 +568,125 @@ button.lotto-cell:hover:not(:disabled) {
     height: 56px;
   }
 }
+
+
+/* Szólások és közmondások */
+.sayings-question .saying-block-badge {
+  margin-top: 26px;
+}
+.saying-figure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 26px 0;
+}
+.saying-figure {
+  min-height: 112px;
+  border: 2px solid #e3e7e4;
+  border-radius: 18px;
+  background: #fff;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  color: var(--ink);
+}
+.saying-figure:hover,
+.saying-expression:hover {
+  border-color: var(--accent);
+}
+.saying-figure.selected,
+.saying-expression.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 8px 22px rgba(79,127,121,.12);
+}
+.saying-figure-letter {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f3f5f4;
+  font-weight: 900;
+  color: var(--accent);
+}
+.saying-figure-symbol {
+  font-size: 2rem;
+  letter-spacing: .08em;
+}
+.saying-expression-list {
+  display: grid;
+  gap: 10px;
+  margin: 26px 0;
+}
+.saying-expression {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  text-align: left;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 2px solid #e3e7e4;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+.saying-expression span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: #f3f5f4;
+  color: var(--accent);
+  font-weight: 900;
+}
+.saying-score-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-width: 620px;
+  margin: 24px auto;
+}
+.saying-score-breakdown > div {
+  padding: 18px;
+  border-radius: 18px;
+  background: #f7f6f2;
+}
+.saying-score-breakdown strong,
+.saying-score-breakdown span,
+.saying-score-breakdown small {
+  display: block;
+}
+.saying-score-breakdown strong { font-size: 1.5rem; }
+.saying-score-breakdown span { margin-top: 4px; font-weight: 800; }
+.saying-score-breakdown small { margin-top: 4px; color: var(--muted); }
+.saying-review-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 28px;
+}
+.saying-review-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 16px;
+  text-align: left;
+}
+.saying-review-row.correct { background: var(--accent-soft); }
+.saying-review-row.wrong { background: var(--danger-soft); }
+.saying-review-row strong,
+.saying-review-row small { display: block; }
+.saying-review-row small { margin-top: 4px; color: var(--muted); }
+.saying-review-row > span { font-weight: 800; }
+@media (max-width: 640px) {
+  .saying-figure-grid { grid-template-columns: repeat(2, 1fr); }
+  .saying-score-breakdown { grid-template-columns: 1fr; }
+  .saying-review-row { grid-template-columns: 1fr; }
+}
