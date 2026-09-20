@@ -1,0 +1,52 @@
+name: Build SCORM 2022
+
+on:
+  push:
+    paths:
+      - ".github/workflows/build-scorm-2022.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assemble SCORM package
+        run: |
+          set -e
+          rm -rf scorm-2022
+          mkdir -p scorm-2022/modules/2022
+          cp imsmanifest.xml scorm-2022/
+          cp launch-2022.html scorm-2022/
+          cp index.html scorm-2022/
+          cp module-router.js scorm-2022/
+          cp module-fixes.js scorm-2022/
+          cp modules.css scorm-2022/
+          cp styles.css scorm-2022/
+          cp learning.css scorm-2022/
+          cp practice.css scorm-2022/
+          cp practice.js scorm-2022/
+          cp practice-numbers.js scorm-2022/
+          cp scorm.js scorm-2022/
+          cp app-2022.js scorm-2022/
+          cp resume-2022.js scorm-2022/
+          cp rewards.js scorm-2022/
+          cp attempt-lock.js scorm-2022/
+          cp modules/2022/tasks.js scorm-2022/modules/2022/
+          cd scorm-2022
+          zip -r ../Helyesiras_gyakorlas_2022_SCORM12.zip .
+
+      - name: Verify ZIP root
+        run: |
+          unzip -l Helyesiras_gyakorlas_2022_SCORM12.zip
+          unzip -Z1 Helyesiras_gyakorlas_2022_SCORM12.zip | grep -x "imsmanifest.xml"
+          unzip -Z1 Helyesiras_gyakorlas_2022_SCORM12.zip | grep -x "modules/2022/tasks.js"
+
+      - name: Upload SCORM ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Helyesiras_gyakorlas_2022_SCORM12
+          path: Helyesiras_gyakorlas_2022_SCORM12.zip
+          if-no-files-found: error
