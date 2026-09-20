@@ -17,9 +17,9 @@ window.FELVETELI_CATEGORIES = {
     modules: {
       "2026": {
         year: 2026,
-        maxScore: 8,
+        maxScore: 14,
         title: "Szólások és közmondások 2026",
-        subtitle: "2 feladatblokk • 9 döntés • 8 pont",
+        subtitle: "3 feladatblokk • 15 döntés • 14 pont",
         scripts: ["scorm.js", "categories/szolasok/2026/tasks.js", "categories/szolasok/app.js"]
       }
     }
