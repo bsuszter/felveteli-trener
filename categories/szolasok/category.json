@@ -7,5 +7,10 @@
     "2026"
   ],
   "practice": false,
-  "scormStrategy": "category-year"
+  "scormStrategy": "category-year",
+  "rewardPolicy": {
+    "yearlyModules": "none",
+    "practiceBank": "aranytaller",
+    "note": "Az éves felvételi modulok csak pontoznak; Aranytallér kizárólag a gyakorlóbankban szerezhető."
+  }
 }
